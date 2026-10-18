@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maitry & Smit — Live Invitation Tracker</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #0f172a;
+      --accent: #d97706;
+      --accent-gold: #f59e0b;
+      --bg: #090d16;
+      --card-bg: rgba(18, 25, 43, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --pending: #f59e0b;
+      --pending-bg: rgba(245, 158, 11, 0.15);
+      --sajode: #8b5cf6;
+      --sarvo: #06b6d4;
+      --mahesh: #3b82f6;
+      --varsha: #ec4899;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(217, 119, 6, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent-gold);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 10px var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent-gradient, linear-gradient(90deg, #3b82f6, #8b5cf6));
+    }
+
+    .stat-card.gold::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .stat-card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .stat-card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+    .stat-card.pink::before { background: linear-gradient(90deg, #ec4899, #f472b6); }
+
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .stat-icon {
+      font-size: 1.2rem;
+    }
+
+    .stat-val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .progress-bar-bg {
+      background: rgba(255, 255, 255, 0.08);
+      height: 12px;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #10b981, #06b6d4, #3b82f6);
+      transition: width 1s ease-in-out;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .filters-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary-light);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Table Container */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .custom-table th {
+      background: rgba(15, 23, 42, 0.8);
+      padding: 14px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .custom-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    .custom-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .sr-col {
+      font-weight: 700;
+      color: var(--text-muted);
+      width: 60px;
+      text-align: center;
+    }
+
+    .name-col {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .phone-col {
+      font-family: monospace;
+      color: #93c5fd;
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-sajode {
+      background: rgba(139, 92, 246, 0.15);
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .badge-sarvo {
+      background: rgba(6, 182, 212, 0.15);
+      color: #67e8f9;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    .badge-sent {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-pending {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-mahesh {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-varsha {
+      background: rgba(236, 72, 153, 0.15);
+      color: #f472b6;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+    }
+
+    .time-col {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state {
+      padding: 48px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* Mobile Responsive Card Layout */
+    @media (max-width: 768px) {
+      .custom-table thead {
+        display: none;
+      }
+      .custom-table, .custom-table tbody, .custom-table tr, .custom-table td {
+        display: block;
+        width: 100%;
+      }
+      .custom-table tr {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        border: 1px solid var(--card-border);
+        padding: 12px;
+      }
+      .custom-table td {
+        padding: 6px 0;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .custom-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+      }
+      .sr-col { text-align: left; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-pill">
+        <span class="badge-pulse"></span>
+        Live Real-Time Dispatch Dashboard
+      </div>
+      <h1>Maitry & Smit Invitation Tracker</h1>
+      <p class="subtitle">Real-time status of wedding & engagement invitation PDFs dispatched via WhatsApp</p>
+    </header>
+
+    <!-- Top Summary Cards -->
+    <div class="stats-grid">
+      <div class="stat-card green">
+        <div class="stat-header">
+          <span class="stat-label">Delivered Successfully</span>
+          <span class="stat-icon">✅</span>
+        </div>
+        <div class="stat-val" id="stat-sent">--</div>
+        <div class="stat-desc" id="stat-sent-pct">--% of total guest list</div>
+      </div>
+
+      <div class="stat-card gold">
+        <div class="stat-header">
+          <span class="stat-label">Remaining Pending</span>
+          <span class="stat-icon">⏳</span>
+        </div>
+        <div class="stat-val" id="stat-pending">--</div>
+        <div class="stat-desc">Awaiting dispatch</div>
+      </div>
+
+      <div class="stat-card blue">
+        <div class="stat-header">
+          <span class="stat-label">Maheshbhai (Account 1)</span>
+          <span class="stat-icon">📱</span>
+        </div>
+        <div class="stat-val" id="stat-mahesh">--</div>
+        <div class="stat-desc">Sent via 9879881172</div>
+      </div>
+
+      <div class="stat-card pink">
+        <div class="stat-header">
+          <span class="stat-label">Varshaben (Account 2)</span>
+          <span class="stat-icon">📲</span>
+        </div>
+        <div class="stat-val" id="stat-varsha">--</div>
+        <div class="stat-desc">Sent via 6351838451</div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span>Overall Dispatch Progress</span>
+        <span id="progress-text">0% Completed</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search by guest name, phone, or village...">
+      </div>
+
+      <div class="filters-wrap">
+        <button class="filter-btn active" data-filter="all">All (<span id="count-all">0</span>)</button>
+        <button class="filter-btn" data-filter="sent">Delivered (<span id="count-sent">0</span>)</button>
+        <button class="filter-btn" data-filter="pending">Pending (<span id="count-pending">0</span>)</button>
+        <button class="filter-btn" data-filter="sajode">Sajode (👥 2)</button>
+        <button class="filter-btn" data-filter="sarvo">Sarvo (👨‍👩‍👧‍👦 Family)</button>
+        <button class="filter-btn" data-filter="mahesh">Maheshbhai</button>
+        <button class="filter-btn" data-filter="varsha">Varshaben</button>
+      </div>
+    </div>
+
+    <!-- Guest Table -->
+    <div class="table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th class="sr-col">Sr.</th>
+            <th>Guest Name</th>
+            <th>Category</th>
+            <th>Phone Number</th>
+            <th>Status</th>
+            <th>Sender Account</th>
+            <th>PDF Delivered</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script>
+    let contactsData = [];
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    async function loadData() {
+      try {
+        const res = await fetch('invitation_contacts_18_oct.json?t=' + Date.now());
+        if (res.ok) {
+          contactsData = await res.json();
+          render();
+        }
+      } catch (e) {
+        console.error("Failed to load json:", e);
+      }
+    }
+
+    function render() {
+      const total = contactsData.length;
+      const sentList = contactsData.filter(c => c["Invitation Status"] === "Sent");
+      const pendingList = contactsData.filter(c => c["Invitation Status"] !== "Sent");
+      
+      const maheshSent = contactsData.filter(c => (c["Sent From (Sender)"] || "").includes("9879881172")).length;
+      const varshaSent = contactsData.filter(c => (c["Sent From (Sender)"] || "").includes("6351838451")).length;
+      
+      const sentCount = sentList.length;
+      const pendingCount = pendingList.length;
+      const pct = total > 0 ? Math.round((sentCount / total) * 100) : 0;
+
+      // Update Stats
+      document.getElementById("stat-sent").innerText = sentCount;
+      document.getElementById("stat-sent-pct").innerText = `${pct}% of ${total} total`;
+      document.getElementById("stat-pending").innerText = pendingCount;
+      document.getElementById("stat-mahesh").innerText = maheshSent;
+      document.getElementById("stat-varsha").innerText = varshaSent;
+
+      // Update Progress
+      document.getElementById("progress-bar").style.width = `${pct}%`;
+      document.getElementById("progress-text").innerText = `${sentCount} / ${total} (${pct}%) Completed`;
+
+      // Update counts on filter buttons
+      document.getElementById("count-all").innerText = total;
+      document.getElementById("count-sent").innerText = sentCount;
+      document.getElementById("count-pending").innerText = pendingCount;
+
+      // Filtered contacts
+      let filtered = contactsData.filter(c => {
+        // Tab Filter
+        if (activeFilter === 'sent' && c["Invitation Status"] !== 'Sent') return false;
+        if (activeFilter === 'pending' && c["Invitation Status"] === 'Sent') return false;
+        if (activeFilter === 'sajode' && c["Category / Note"] !== 'Sajode') return false;
+        if (activeFilter === 'sarvo' && c["Category / Note"] !== 'Sarvo') return false;
+        if (activeFilter === 'mahesh' && !(c["Sent From (Sender)"] || "").includes("9879881172")) return false;
+        if (activeFilter === 'varsha' && !(c["Sent From (Sender)"] || "").includes("6351838451")) return false;
+
+        // Search Filter
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          const name = (c["Name"] || "").toLowerCase();
+          const phone = (c["Phone 1"] || "") + " " + (c["Phone 2"] || "") + " " + (c["Recipient Number"] || "");
+          const cat = (c["Category / Note"] || "").toLowerCase();
+          const sender = (c["Sent From (Sender)"] || "").toLowerCase();
+          if (!name.includes(q) && !phone.includes(q) && !cat.includes(q) && !sender.includes(q)) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+      // Render Table
+      const tbody = document.getElementById("table-body");
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="empty-state">No matching guests found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(c => {
+        const isSent = c["Invitation Status"] === "Sent";
+        const cat = c["Category / Note"] || "Sajode";
+        const catBadge = cat === 'Sarvo' 
+          ? `<span class="badge badge-sarvo">👨‍👩‍👧‍👦 Sarvo</span>` 
+          : `<span class="badge badge-sajode">👥 Sajode</span>`;
+
+        const statusBadge = isSent 
+          ? `<span class="badge badge-sent">✅ Delivered</span>` 
+          : `<span class="badge badge-pending">⏳ Pending</span>`;
+
+        let senderBadge = `<span style="color:var(--text-muted)">—</span>`;
+        if (c["Sent From (Sender)"]) {
+          if (c["Sent From (Sender)"].includes("9879881172")) {
+            senderBadge = `<span class="badge badge-mahesh">Maheshbhai</span>`;
+          } else if (c["Sent From (Sender)"].includes("6351838451")) {
+            senderBadge = `<span class="badge badge-varsha">Varshaben</span>`;
+          } else {
+            senderBadge = `<span class="badge badge-mahesh">${c["Sent From (Sender)"]}</span>`;
+          }
+        }
+
+        const pdfName = c["PDF Sent"] ? c["PDF Sent"] : "—";
+        const time = c["Sent Timestamp"] ? c["Sent Timestamp"] : "—";
+        const phone = c["Phone 1"] || c["Recipient Number"] || "—";
+
+        return `
+          <tr>
+            <td class="sr-col" data-label="Sr.">#${c["Sr. No."]}</td>
+            <td class="name-col" data-label="Guest">${c["Name"]}</td>
+            <td data-label="Category">${catBadge}</td>
+            <td class="phone-col" data-label="Phone">${phone}</td>
+            <td data-label="Status">${statusBadge}</td>
+            <td data-label="Sender">${senderBadge}</td>
+            <td data-label="PDF">${pdfName}</td>
+            <td class="time-col" data-label="Timestamp">${time}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Filter Button Clicks
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.getAttribute("data-filter");
+        render();
+      });
+    });
+
+    // Search Input
+    document.getElementById("search-input").addEventListener("input", (e) => {
+      searchQuery = e.target.value.trim();
+      render();
+    });
+
+    // Initial Load & Auto-Refresh every 15s
+    loadData();
+    setInterval(loadData, 15000);
+  </script>
+</body>
+</html>

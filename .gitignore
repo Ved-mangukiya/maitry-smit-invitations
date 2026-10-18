@@ -1,0 +1,13 @@
+# WhatsApp Authentication & Sessions (CRITICAL: Never commit session keys)
+sessions/
+.sessions/
+
+# Logs & temporary files
+*.log
+*.tmp
+__pycache__/
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
