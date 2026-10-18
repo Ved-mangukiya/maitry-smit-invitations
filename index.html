@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>મૈત્રી અને સ્મિત — નિમંત્રણ પત્રિકા ટ્રેકર (Live Tracker)</title>
   
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Gujarati:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -39,7 +39,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', 'Nirmala UI', 'Shruti', sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -55,7 +55,7 @@
       margin: 0 auto;
     }
 
-    /* Header (Mobile First) */
+    /* Web Header */
     header {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -109,18 +109,20 @@
 
     .btn-action {
       flex: 1;
-      min-width: 140px;
+      min-width: 150px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 16px;
+      padding: 13px 16px;
       border-radius: 12px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
       border: none;
+      text-decoration: none;
+      text-align: center;
     }
 
     .btn-pdf {
@@ -134,6 +136,16 @@
       transform: translateY(-1px);
     }
 
+    .btn-print {
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+    }
+
+    .btn-print:hover {
+      background: #334155;
+    }
+
     .btn-refresh {
       background: #ffffff;
       color: var(--text-main);
@@ -144,7 +156,7 @@
       background: #f1f5f9;
     }
 
-    /* Quick Summary Cards (2x2 grid on mobile) */
+    /* Quick Summary Cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -273,7 +285,7 @@
       color: #ffffff;
     }
 
-    /* Cards View for Mobile */
+    /* Mobile Cards View */
     .mobile-cards {
       display: flex;
       flex-direction: column;
@@ -296,7 +308,7 @@
     }
 
     .gc-name {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text-main);
     }
@@ -320,9 +332,9 @@
 
     .gc-phone {
       font-family: monospace;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: #1e3a8a;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .gc-checks {
@@ -337,21 +349,24 @@
     }
 
     .check-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #334155;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #1e293b;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
     .box-square {
-      width: 18px;
-      height: 18px;
-      border: 1.5px solid #64748b;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #64748b;
       border-radius: 4px;
       background: #ffffff;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
     }
 
     /* Badges */
@@ -361,7 +376,7 @@
       gap: 3px;
       padding: 3px 8px;
       border-radius: 6px;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 700;
     }
 
@@ -396,18 +411,16 @@
     .custom-table th {
       background: #f1f5f9;
       padding: 12px 14px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #475569;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #1e293b;
       border-bottom: 1px solid var(--card-border);
     }
 
     .custom-table td {
       padding: 12px 14px;
       border-bottom: 1px solid #f1f5f9;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       vertical-align: middle;
     }
 
@@ -419,118 +432,195 @@
 
     .check-cell {
       text-align: center;
-      width: 130px;
-      background: #fcfcfd;
+      width: 110px;
     }
 
     .print-box {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 1.5px solid #475569;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #64748b;
       border-radius: 4px;
       background: #ffffff;
-      vertical-align: middle;
+      font-size: 0.85rem;
+      font-weight: bold;
     }
 
-    /* =================================================== */
-    /* PRINT / A4 PDF STYLES (Landscape, Clean, High Res)  */
-    /* =================================================== */
+    .print-header {
+      display: none;
+    }
+
+    /* ========================================================= */
+    /* A4 PORTRAIT PRINT & BIG FONTS OPTIMIZATION                */
+    /* ========================================================= */
     @media print {
       @page {
-        size: A4 landscape;
-        margin: 8mm 8mm 8mm 8mm;
+        size: A4 portrait !important;
+        margin: 8mm 6mm 8mm 6mm !important;
       }
 
       body {
         background: #ffffff !important;
         color: #000000 !important;
         padding: 0 !important;
+        font-family: 'Noto Sans Gujarati', 'Nirmala UI', 'Shruti', 'Plus Jakarta Sans', Arial, sans-serif !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
 
       .container {
         max-width: 100% !important;
         margin: 0 !important;
+        padding: 0 !important;
       }
 
-      /* Hide interactive controls in print */
+      /* Hide interactive web elements */
+      header,
       .action-bar,
       .controls,
       .badge-top,
       .filter-scroll,
       .btn-action,
-      .search-box {
+      .search-box,
+      .stats-grid,
+      .progress-box,
+      .mobile-cards {
         display: none !important;
       }
 
-      header {
-        border: none !important;
-        box-shadow: none !important;
-        padding: 4px 0 10px 0 !important;
-        margin-bottom: 10px !important;
+      /* Printable Compact Header */
+      .print-header {
+        display: block !important;
         text-align: center;
+        border-bottom: 2px solid #000000;
+        padding-bottom: 5px;
+        margin-bottom: 8px;
       }
 
-      h1 {
-        font-size: 1.4rem !important;
+      .print-title {
+        font-size: 15pt !important;
+        font-weight: 800 !important;
+        color: #000000 !important;
+        margin-bottom: 2px !important;
+      }
+
+      .print-meta {
+        font-size: 9.5pt !important;
+        font-weight: 700 !important;
         color: #000000 !important;
       }
 
-      .stats-grid {
-        display: flex !important;
-        justify-content: space-around;
-        gap: 8px !important;
-        margin-bottom: 10px !important;
-      }
-
-      .stat-card {
-        padding: 6px 10px !important;
-        border: 1px solid #94a3b8 !important;
-        box-shadow: none !important;
-      }
-
-      .stat-value { font-size: 1.1rem !important; color: #000 !important; }
-      .progress-box { display: none !important; }
-
-      /* Always show table on print */
-      .mobile-cards { display: none !important; }
+      /* Big Font Table Layout in Portrait */
       .table-box {
         display: block !important;
-        border: 1px solid #000000 !important;
+        border: none !important;
         box-shadow: none !important;
+        overflow: visible !important;
       }
 
       .custom-table {
         width: 100% !important;
+        border-collapse: collapse !important;
+      }
+
+      .custom-table thead {
+        display: table-header-group !important;
+      }
+
+      .custom-table tr {
+        page-break-inside: avoid !important;
+        page-break-after: auto !important;
       }
 
       .custom-table th {
         background: #e2e8f0 !important;
         color: #000000 !important;
-        border: 1px solid #000000 !important;
-        padding: 6px 8px !important;
-        font-size: 0.72rem !important;
+        border: 1.5px solid #000000 !important;
+        padding: 7px 4px !important;
+        font-size: 11pt !important; /* BIG FONT HEADER */
+        font-weight: 800 !important;
+        text-align: center !important;
       }
 
       .custom-table td {
-        border: 1px solid #cbd5e1 !important;
-        padding: 5px 6px !important;
-        font-size: 0.75rem !important;
+        border: 1px solid #000000 !important;
+        padding: 6px 5px !important;
+        font-size: 11.5pt !important; /* BIG FONT FOR BODY */
         color: #000000 !important;
+        vertical-align: middle !important;
+      }
+
+      /* Hide PDF filename column in portrait print to give maximum width for BIG fonts */
+      .th-pdf, .td-pdf {
+        display: none !important;
+      }
+
+      .td-sr {
+        font-size: 12pt !important;
+        font-weight: 800 !important;
+        text-align: center !important;
+        width: 38px !important;
+      }
+
+      .td-name {
+        font-size: 12pt !important; /* BIG FONT NAME */
+        font-weight: 700 !important;
+        color: #000000 !important;
+      }
+
+      .td-cat {
+        font-size: 11pt !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        width: 60px !important;
+      }
+
+      .td-phone {
+        font-size: 11.5pt !important; /* BIG FONT PHONE */
+        font-weight: 700 !important;
+        font-family: monospace, sans-serif !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        width: 130px !important;
+      }
+
+      .td-status {
+        font-size: 10pt !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        width: 100px !important;
+      }
+
+      .td-sender {
+        font-size: 10pt !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        width: 90px !important;
       }
 
       .badge {
-        border: 1px solid #64748b !important;
+        border: 1.5px solid #000000 !important;
         color: #000000 !important;
         background: transparent !important;
-        font-size: 0.65rem !important;
+        font-size: 9pt !important;
         padding: 2px 4px !important;
+        font-weight: 800 !important;
+      }
+
+      .check-cell {
+        width: 65px !important;
+        text-align: center !important;
       }
 
       .print-box {
-        border: 1.5px solid #000000 !important;
-        width: 16px !important;
-        height: 16px !important;
+        width: 22px !important;
+        height: 22px !important;
+        border: 2px solid #000000 !important;
+        border-radius: 4px !important;
+        display: inline-block !important;
+        background: #ffffff !important;
       }
     }
   </style>
@@ -539,7 +629,20 @@
 
   <div class="container">
     
-    <!-- Header -->
+    <!-- Printable Header (Only appears on A4 Print / PDF) -->
+    <div class="print-header">
+      <div class="print-title">મૈત્રી & સ્મિત — લગ્ન / સગાઈ નિમંત્રણ પત્રિકા લિસ્ટ</div>
+      <div class="print-meta">
+        <span>કુલ મહેમાન: 94</span> | 
+        <span>મોકલેલ: 51</span> | 
+        <span>બાકી: 43</span> | 
+        <span>સજોડે: 63</span> | 
+        <span>સર્વો: 31</span> | 
+        <span>તારીખ: 18-Oct-2026</span>
+      </div>
+    </div>
+
+    <!-- Web Header -->
     <header>
       <div class="badge-top">
         <span class="pulse-dot"></span>
@@ -551,37 +654,44 @@
 
     <!-- Top Action Buttons (Mobile First) -->
     <div class="action-bar">
-      <button class="btn-action btn-pdf" onclick="window.print()">
-        📄 A4 PDF ડાઉનલોડ / પ્રિન્ટ કરો
+      <!-- 1-Click Direct Download of Pre-rendered A4 Portrait PDF -->
+      <a href="Maitry_and_Smit_Invitations_A4_Portrait.pdf" download="Maitry_and_Smit_Invitations_A4_Portrait.pdf" class="btn-action btn-pdf">
+        📥 A4 Portrait PDF ડાઉનલોડ
+      </a>
+
+      <!-- Instant Browser Print Dialogue configured in A4 Portrait -->
+      <button class="btn-action btn-print" onclick="window.print()">
+        🖨️ પ્રિન્ટ / સેવ PDF
       </button>
+
       <button class="btn-action btn-refresh" onclick="loadData()">
-        🔄 રીફ્રેશ (Refresh)
+        🔄 રીફ્રેશ
       </button>
     </div>
 
-    <!-- Quick Stats -->
+    <!-- Quick Stats (2x2 Mobile Grid) -->
     <div class="stats-grid">
       <div class="stat-card c-green">
         <div class="stat-title">મોકલાઈ ગયું (Sent)</div>
-        <div class="stat-value" id="stat-sent">--</div>
-        <div class="stat-sub" id="stat-sent-pct">--% કામ પૂરું</div>
+        <div class="stat-value" id="stat-sent">51</div>
+        <div class="stat-sub" id="stat-sent-pct">54% પૂર્ણ (94 માંથી)</div>
       </div>
 
       <div class="stat-card c-gold">
         <div class="stat-title">બાકી છે (Pending)</div>
-        <div class="stat-value" id="stat-pending">--</div>
+        <div class="stat-value" id="stat-pending">43</div>
         <div class="stat-sub">મોકલવાના બાકી</div>
       </div>
 
       <div class="stat-card c-blue">
         <div class="stat-title">મહેશભાઈ Mangukiya</div>
-        <div class="stat-value" id="stat-mahesh">--</div>
+        <div class="stat-value" id="stat-mahesh">30</div>
         <div class="stat-sub">9879881172 વડે</div>
       </div>
 
       <div class="stat-card c-pink">
         <div class="stat-title">વર્ષાબેન Mangukiya</div>
-        <div class="stat-value" id="stat-varsha">--</div>
+        <div class="stat-value" id="stat-varsha">21</div>
         <div class="stat-sub">6351838451 વડે</div>
       </div>
     </div>
@@ -590,10 +700,10 @@
     <div class="progress-box">
       <div class="progress-labels">
         <span>કુલ કામગીરી પ્રગતિ (Total Progress)</span>
-        <span id="progress-text">--%</span>
+        <span id="progress-text">51 / 94 (54%)</span>
       </div>
       <div class="progress-track">
-        <div class="progress-fill" id="progress-bar" style="width: 0%;"></div>
+        <div class="progress-fill" id="progress-bar" style="width: 54%;"></div>
       </div>
     </div>
 
@@ -602,39 +712,3139 @@
       <input type="text" class="search-input" id="search-input" placeholder="🔍 નામ, ગામ કે ફોન નંબર શોધો...">
 
       <div class="filter-scroll">
-        <button class="filter-btn active" data-filter="all">બધા (<span id="c-all">0</span>)</button>
-        <button class="filter-btn" data-filter="sent">મોકલેલ (<span id="c-sent">0</span>)</button>
-        <button class="filter-btn" data-filter="pending">બાકી (<span id="c-pending">0</span>)</button>
-        <button class="filter-btn" data-filter="sajode">સજોડે (👥 2)</button>
-        <button class="filter-btn" data-filter="sarvo">સર્વો (👨‍👩‍👧‍👦 પરિવાર)</button>
-        <button class="filter-btn" data-filter="mahesh">મહેશભાઈ</button>
-        <button class="filter-btn" data-filter="varsha">વર્ષાબેન</button>
+        <button class="filter-btn active" data-filter="all">બધા (<span id="c-all">94</span>)</button>
+        <button class="filter-btn" data-filter="sent">મોકલેલ (<span id="c-sent">51</span>)</button>
+        <button class="filter-btn" data-filter="pending">બાકી (<span id="c-pending">43</span>)</button>
+        <button class="filter-btn" data-filter="sajode">સજોડે (👥 63)</button>
+        <button class="filter-btn" data-filter="sarvo">સર્વો (👨‍👩‍👧‍👦 31)</button>
+        <button class="filter-btn" data-filter="mahesh">મહેશભાઈ (30)</button>
+        <button class="filter-btn" data-filter="varsha">વર્ષાબેન (21)</button>
       </div>
     </div>
 
     <!-- Mobile Cards View -->
     <div class="mobile-cards" id="mobile-cards-container">
-      <!-- Populated via JS -->
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Ghanshyam.Patel.Ujalvav</div>
+            <div class="gc-sr">#1</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98255 16096" class="gc-phone">📞 98255 16096</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Raju Patel Amadavad</div>
+            <div class="gc-sr">#2</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98797 18755" class="gc-phone">📞 98797 18755</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Sagar.Bhano.Haliyad</div>
+            <div class="gc-sr">#3</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:95869 98985" class="gc-phone">📞 95869 98985</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Ramesh. Patel. Bosadava</div>
+            <div class="gc-sr">#4</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:99741 48003" class="gc-phone">📞 99741 48003</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Umesh.Bhano</div>
+            <div class="gc-sr">#5</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98251 35657" class="gc-phone">📞 98251 35657</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Vallabh.Patel.Budhel</div>
+            <div class="gc-sr">#6</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98249 68076" class="gc-phone">📞 98249 68076</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Himmat.Patel.T1</div>
+            <div class="gc-sr">#7</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:97272 53375" class="gc-phone">📞 97272 53375</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Pravin Patel. Dharuka</div>
+            <div class="gc-sr">#8</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98255 78701" class="gc-phone">📞 98255 78701</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Manshuk.Patel</div>
+            <div class="gc-sr">#9</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98243 82600" class="gc-phone">📞 98243 82600</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Ramesh.Patel.Salanparda</div>
+            <div class="gc-sr">#10</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98258 54011" class="gc-phone">📞 98258 54011</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Ashok.Patel.Pipariya</div>
+            <div class="gc-sr">#11</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:97272 67854" class="gc-phone">📞 97272 67854</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Jitu.Patel</div>
+            <div class="gc-sr">#12</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:99130 72055" class="gc-phone">📞 99130 72055</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Bhautik Jasani</div>
+            <div class="gc-sr">#13</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:99247 85169" class="gc-phone">📞 99247 85169</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dharmesh Patel</div>
+            <div class="gc-sr">#14</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:94298 83005" class="gc-phone">📞 94298 83005</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Keyur Bhano Kapardi</div>
+            <div class="gc-sr">#15</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:93754 73020" class="gc-phone">📞 93754 73020</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Hira Patel. Khijadiya</div>
+            <div class="gc-sr">#16</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:93273 75401" class="gc-phone">📞 93273 75401</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Jivaraj .Patel Gathhula</div>
+            <div class="gc-sr">#17</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98259 54583" class="gc-phone">📞 98259 54583</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Keyur Mitaxi</div>
+            <div class="gc-sr">#18</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:97379 24012" class="gc-phone">📞 97379 24012</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dixit Jiju (Jyoti)</div>
+            <div class="gc-sr">#19</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:+97 1585526281" class="gc-phone">📞 +97 1585526281</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Karashan.Bhai.Parvala</div>
+            <div class="gc-sr">#20</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98241 25510" class="gc-phone">📞 98241 25510</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Eshavar.Paravala.Kajavdra</div>
+            <div class="gc-sr">#21</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:97147 01517" class="gc-phone">📞 97147 01517</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Jaydip.Valukad Dhameliya</div>
+            <div class="gc-sr">#22</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:90670 32685" class="gc-phone">📞 90670 32685</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Champak Bhai Valukad</div>
+            <div class="gc-sr">#23</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:96386 40172" class="gc-phone">📞 96386 40172</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dharmesh.Rampar</div>
+            <div class="gc-sr">#24</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:99090 90690" class="gc-phone">📞 99090 90690</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Arjun.Ishvar.Valukad</div>
+            <div class="gc-sr">#25</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:70699 23426" class="gc-phone">📞 70699 23426</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dashbhai.Rampar</div>
+            <div class="gc-sr">#26</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:81418 32662" class="gc-phone">📞 81418 32662</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Ashabhabhi Nari</div>
+            <div class="gc-sr">#27</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:82389 11483" class="gc-phone">📞 82389 11483</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Mahendrabhai</div>
+            <div class="gc-sr">#28</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:+1 (214) 729-6784" class="gc-phone">📞 +1 (214) 729-6784</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dineshbhai Sanosara</div>
+            <div class="gc-sr">#29</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98980 34700" class="gc-phone">📞 98980 34700</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Jagadish.Sanosara</div>
+            <div class="gc-sr">#30</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-mahesh">મહેશભાઈ</span>
+            <a href="tel:98248 93334" class="gc-phone">📞 98248 93334</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Nilesh Kamlej</div>
+            <div class="gc-sr">#31</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:97693 45945" class="gc-phone">📞 97693 45945</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Keyur Kamalej</div>
+            <div class="gc-sr">#32</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:99204 56356" class="gc-phone">📞 99204 56356</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dor.Ramesh.Bhavangar</div>
+            <div class="gc-sr">#33</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:93276 08084" class="gc-phone">📞 93276 08084</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Nagji.Premji.Dadva</div>
+            <div class="gc-sr">#34</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:98259 15245" class="gc-phone">📞 98259 15245</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Kalpeshbhai Nagjibhai</div>
+            <div class="gc-sr">#35</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9820829008" class="gc-phone">📞 9820829008</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Mahesh.Arajan.Dadva</div>
+            <div class="gc-sr">#36</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:97233 24357" class="gc-phone">📞 97233 24357</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Ghanshyam.Premaji</div>
+            <div class="gc-sr">#37</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:98254 80382" class="gc-phone">📞 98254 80382</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Pravin Kuraji Am</div>
+            <div class="gc-sr">#38</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:98240 80369" class="gc-phone">📞 98240 80369</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Jitu Bajud</div>
+            <div class="gc-sr">#39</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:93748 33008" class="gc-phone">📞 93748 33008</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Himmatlal L I C Mangukiya</div>
+            <div class="gc-sr">#40</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:98255 37244" class="gc-phone">📞 98255 37244</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Damji.Goyani</div>
+            <div class="gc-sr">#41</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:94280 78065" class="gc-phone">📞 94280 78065</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Mohanbhai Vitthalbhai Mangukiya</div>
+            <div class="gc-sr">#42</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:94274 30252" class="gc-phone">📞 94274 30252</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Janak.M.Surat</div>
+            <div class="gc-sr">#43</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:96012 91048" class="gc-phone">📞 96012 91048</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Naresh.H.Dadva</div>
+            <div class="gc-sr">#44</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:97232 83070" class="gc-phone">📞 97232 83070</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Arvindbhai Hamabhai Mangukiya</div>
+            <div class="gc-sr">#45</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:84888 66704" class="gc-phone">📞 84888 66704</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Tushar.M.Dadva.</div>
+            <div class="gc-sr">#46</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:99040 20393" class="gc-phone">📞 99040 20393</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Mayur M.V.Dadva</div>
+            <div class="gc-sr">#47</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:84600 58961" class="gc-phone">📞 84600 58961</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dharmeshbhai Nathubhai</div>
+            <div class="gc-sr">#48</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:98243 48641" class="gc-phone">📞 98243 48641</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Maheshbhai Nathubhai Mangukiya</div>
+            <div class="gc-sr">#49</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9879881172" class="gc-phone">📞 9879881172</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dipu Janak Mangukiya</div>
+            <div class="gc-sr">#50</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:884 932 1147" class="gc-phone">📞 884 932 1147</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Soham Naresh Mangukiya</div>
+            <div class="gc-sr">#51</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:91061 21370" class="gc-phone">📞 91061 21370</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dharmik Arvind Mangukiya</div>
+            <div class="gc-sr">#52</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:84011 44519" class="gc-phone">📞 84011 44519</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Bhupat Bhai Jerambhai</div>
+            <div class="gc-sr">#53</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9825530139" class="gc-phone">📞 9825530139</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dhirubhai Jerambhai</div>
+            <div class="gc-sr">#54</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9979616416" class="gc-phone">📞 9979616416</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Gautambhai Jerambhai</div>
+            <div class="gc-sr">#55</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9913779369" class="gc-phone">📞 9913779369</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Rameshbhai Odhavjibhai</div>
+            <div class="gc-sr">#56</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9824811225" class="gc-phone">📞 9824811225</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dharamshibhai Odhavjibhai</div>
+            <div class="gc-sr">#57</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:8485903370" class="gc-phone">📞 8485903370</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Ashokbhai Odhavjibhai</div>
+            <div class="gc-sr">#58</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9374621545" class="gc-phone">📞 9374621545</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Jagdishbhai Keshubhai</div>
+            <div class="gc-sr">#59</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9426139949" class="gc-phone">📞 9426139949</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Hirenbhai Vallabhbhai (Harenbhai)</div>
+            <div class="gc-sr">#60</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9824121151" class="gc-phone">📞 9824121151</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Nileshbhai Vallabhbhai</div>
+            <div class="gc-sr">#61</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9879336661" class="gc-phone">📞 9879336661</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Narshibhai Ganeshbhai</div>
+            <div class="gc-sr">#62</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:6352003221" class="gc-phone">📞 6352003221</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Bhupatbhai Ganeshbhai</div>
+            <div class="gc-sr">#63</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:8980970032" class="gc-phone">📞 8980970032</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Vinubhai Ganeshbhai</div>
+            <div class="gc-sr">#64</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9727299431" class="gc-phone">📞 9727299431</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Harshadbhai Arjanbhai Lukhi</div>
+            <div class="gc-sr">#65</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9979947117" class="gc-phone">📞 9979947117</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Manojbhai Arjanbhai Lukhi</div>
+            <div class="gc-sr">#66</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9925352178" class="gc-phone">📞 9925352178</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Kishor Bhai Kanjibhai</div>
+            <div class="gc-sr">#67</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:98200 06357" class="gc-phone">📞 98200 06357</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Nileshbhai Jivrajbhai</div>
+            <div class="gc-sr">#68</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9867462053" class="gc-phone">📞 9867462053</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Haresh Bholo</div>
+            <div class="gc-sr">#69</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9275055636" class="gc-phone">📞 9275055636</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Arvindbhai Vallabhbhai</div>
+            <div class="gc-sr">#70</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:8140974070" class="gc-phone">📞 8140974070</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Virjibhai Lavjibhai</div>
+            <div class="gc-sr">#71</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9825978408" class="gc-phone">📞 9825978408</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Pravinbhai Vitthalbhai</div>
+            <div class="gc-sr">#72</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9825272006" class="gc-phone">📞 9825272006</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Sureshbhai Vitthalbhai</div>
+            <div class="gc-sr">#73</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-pending">⏳ બાકી</span>
+            
+            <a href="tel:9825151280" class="gc-phone">📞 9825151280</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Alpesh Mandva</div>
+            <div class="gc-sr">#74</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99250 61835" class="gc-phone">📞 99250 61835</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dinesh Mandva</div>
+            <div class="gc-sr">#75</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:93216 63001" class="gc-phone">📞 93216 63001</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Vaaljibhai Mandva</div>
+            <div class="gc-sr">#76</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:94274 75749" class="gc-phone">📞 94274 75749</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Haribhai Mandva</div>
+            <div class="gc-sr">#77</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99795 94798" class="gc-phone">📞 99795 94798</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Tejas Mandva</div>
+            <div class="gc-sr">#78</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:98247 12995" class="gc-phone">📞 98247 12995</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Bhanu Anida</div>
+            <div class="gc-sr">#79</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99786 15218" class="gc-phone">📞 99786 15218</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Asu Golrama</div>
+            <div class="gc-sr">#80</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:97122 23634" class="gc-phone">📞 97122 23634</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Bharatkaka Mandva</div>
+            <div class="gc-sr">#81</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:98194 25755" class="gc-phone">📞 98194 25755</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Chetu Kaki Mumbai</div>
+            <div class="gc-sr">#82</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:98196 78148" class="gc-phone">📞 98196 78148</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Asha Paresh Nari</div>
+            <div class="gc-sr">#83</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99787 15273" class="gc-phone">📞 99787 15273</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Sadhna Sanosara</div>
+            <div class="gc-sr">#84</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:90289 91910" class="gc-phone">📞 90289 91910</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Hina Mandva</div>
+            <div class="gc-sr">#85</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:97232 57073" class="gc-phone">📞 97232 57073</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Kailasben Anida</div>
+            <div class="gc-sr">#86</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:78742 91554" class="gc-phone">📞 78742 91554</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Geeta Lathi</div>
+            <div class="gc-sr">#87</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99042 01847" class="gc-phone">📞 99042 01847</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Naina Limda</div>
+            <div class="gc-sr">#88</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99797 13715" class="gc-phone">📞 99797 13715</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Silpa Ahmedabad</div>
+            <div class="gc-sr">#89</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99986 50656" class="gc-phone">📞 99986 50656</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Rekha Tana</div>
+            <div class="gc-sr">#90</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:99981 54056" class="gc-phone">📞 99981 54056</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Manish Mandva</div>
+            <div class="gc-sr">#91</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:9825488735" class="gc-phone">📞 9825488735</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Jivrajkaka Mandva</div>
+            <div class="gc-sr">#92</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:9825092383" class="gc-phone">📞 9825092383</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">Dipakkaka</div>
+            <div class="gc-sr">#93</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:9820135476" class="gc-phone">📞 9820135476</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="gc-header">
+            <div class="gc-name">kajal pankaj</div>
+            <div class="gc-sr">#94</div>
+          </div>
+          <div class="gc-meta">
+            <span class="badge b-sajode">👥 સજોડે</span>
+            <span class="badge b-sent">✅ મોકલાઈ ગયું</span>
+            <span class="badge b-varsha">વર્ષાબેન</span>
+            <a href="tel:7567009401" class="gc-phone">📞 7567009401</a>
+          </div>
+          <div class="gc-checks">
+            <div class="check-label">
+              <span class="box-square"></span>
+              વોટ્સએપ OK
+            </div>
+            <div class="check-label">
+              <span class="box-square"></span>
+              ફોન પર આમંત્રણ
+            </div>
+          </div>
+        </div>
     </div>
 
-    <!-- Desktop & Print Table View -->
+    <!-- Desktop & A4 Portrait Print Table View -->
     <div class="table-box">
       <table class="custom-table">
         <thead>
           <tr>
-            <th class="col-center" style="width: 45px;">ક્રમ</th>
-            <th>મહેમાનનું નામ</th>
-            <th style="width: 90px;">શ્રેણી</th>
-            <th>ફોન નંબર</th>
-            <th>સ્ટેટસ</th>
-            <th>મોકલનાર</th>
-            <th>PDF પત્રિકા</th>
+            <th class="td-sr">ક્રમ</th>
+            <th class="td-name">મહેમાનનું નામ</th>
+            <th class="td-cat">શ્રેણી</th>
+            <th class="td-phone">ફોન નંબર</th>
+            <th class="td-status">સ્થિતિ</th>
+            <th class="td-sender">મોકલનાર</th>
+            <th class="th-pdf" style="width: 110px;">PDF પત્રિકા</th>
             <th class="check-cell" style="background:#fef3c7; color:#92400e;">વોટ્સએપ OK?</th>
-            <th class="check-cell" style="background:#dbeafe; color:#1e40af;">ફોન પર વાતચીત?</th>
+            <th class="check-cell" style="background:#dbeafe; color:#1e40af;">ફોન પર આમંત્રણ?</th>
           </tr>
         </thead>
         <tbody id="table-body">
-          <!-- Populated via JS -->
+            <tr>
+              <td class="td-sr"><b>#1</b></td>
+              <td class="td-name">Ghanshyam.Patel.Ujalvav</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98255 16096</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#2</b></td>
+              <td class="td-name">Raju Patel Amadavad</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98797 18755</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#3</b></td>
+              <td class="td-name">Sagar.Bhano.Haliyad</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">95869 98985</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#4</b></td>
+              <td class="td-name">Ramesh. Patel. Bosadava</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99741 48003</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#5</b></td>
+              <td class="td-name">Umesh.Bhano</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98251 35657</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#6</b></td>
+              <td class="td-name">Vallabh.Patel.Budhel</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98249 68076</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#7</b></td>
+              <td class="td-name">Himmat.Patel.T1</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">97272 53375</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#8</b></td>
+              <td class="td-name">Pravin Patel. Dharuka</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98255 78701</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#9</b></td>
+              <td class="td-name">Manshuk.Patel</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98243 82600</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#10</b></td>
+              <td class="td-name">Ramesh.Patel.Salanparda</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98258 54011</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#11</b></td>
+              <td class="td-name">Ashok.Patel.Pipariya</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">97272 67854</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#12</b></td>
+              <td class="td-name">Jitu.Patel</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">99130 72055</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#13</b></td>
+              <td class="td-name">Bhautik Jasani</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99247 85169</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#14</b></td>
+              <td class="td-name">Dharmesh Patel</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">94298 83005</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#15</b></td>
+              <td class="td-name">Keyur Bhano Kapardi</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">93754 73020</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#16</b></td>
+              <td class="td-name">Hira Patel. Khijadiya</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">93273 75401</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#17</b></td>
+              <td class="td-name">Jivaraj .Patel Gathhula</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98259 54583</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#18</b></td>
+              <td class="td-name">Keyur Mitaxi</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">97379 24012</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#19</b></td>
+              <td class="td-name">Dixit Jiju (Jyoti)</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">+97 1585526281</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#20</b></td>
+              <td class="td-name">Karashan.Bhai.Parvala</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98241 25510</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#21</b></td>
+              <td class="td-name">Eshavar.Paravala.Kajavdra</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">97147 01517</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#22</b></td>
+              <td class="td-name">Jaydip.Valukad Dhameliya</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">90670 32685</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#23</b></td>
+              <td class="td-name">Champak Bhai Valukad</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">96386 40172</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#24</b></td>
+              <td class="td-name">Dharmesh.Rampar</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99090 90690</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#25</b></td>
+              <td class="td-name">Arjun.Ishvar.Valukad</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">70699 23426</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#26</b></td>
+              <td class="td-name">Dashbhai.Rampar</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">81418 32662</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#27</b></td>
+              <td class="td-name">Ashabhabhi Nari</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">82389 11483</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#28</b></td>
+              <td class="td-name">Mahendrabhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">+1 (214) 729-6784</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#29</b></td>
+              <td class="td-name">Dineshbhai Sanosara</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98980 34700</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#30</b></td>
+              <td class="td-name">Jagadish.Sanosara</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98248 93334</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-mahesh">મહેશભાઈ</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#31</b></td>
+              <td class="td-name">Nilesh Kamlej</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">97693 45945</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#32</b></td>
+              <td class="td-name">Keyur Kamalej</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99204 56356</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#33</b></td>
+              <td class="td-name">Dor.Ramesh.Bhavangar</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">93276 08084</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#34</b></td>
+              <td class="td-name">Nagji.Premji.Dadva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">98259 15245</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#35</b></td>
+              <td class="td-name">Kalpeshbhai Nagjibhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9820829008</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#36</b></td>
+              <td class="td-name">Mahesh.Arajan.Dadva</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">97233 24357</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#37</b></td>
+              <td class="td-name">Ghanshyam.Premaji</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98254 80382</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#38</b></td>
+              <td class="td-name">Pravin Kuraji Am</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98240 80369</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#39</b></td>
+              <td class="td-name">Jitu Bajud</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">93748 33008</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#40</b></td>
+              <td class="td-name">Himmatlal L I C Mangukiya</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98255 37244</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#41</b></td>
+              <td class="td-name">Damji.Goyani</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">94280 78065</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#42</b></td>
+              <td class="td-name">Mohanbhai Vitthalbhai Mangukiya</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">94274 30252</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#43</b></td>
+              <td class="td-name">Janak.M.Surat</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">96012 91048</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#44</b></td>
+              <td class="td-name">Naresh.H.Dadva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">97232 83070</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#45</b></td>
+              <td class="td-name">Arvindbhai Hamabhai Mangukiya</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">84888 66704</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#46</b></td>
+              <td class="td-name">Tushar.M.Dadva.</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">99040 20393</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#47</b></td>
+              <td class="td-name">Mayur M.V.Dadva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">84600 58961</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#48</b></td>
+              <td class="td-name">Dharmeshbhai Nathubhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">98243 48641</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#49</b></td>
+              <td class="td-name">Maheshbhai Nathubhai Mangukiya</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9879881172</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#50</b></td>
+              <td class="td-name">Dipu Janak Mangukiya</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">884 932 1147</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#51</b></td>
+              <td class="td-name">Soham Naresh Mangukiya</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">91061 21370</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#52</b></td>
+              <td class="td-name">Dharmik Arvind Mangukiya</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">84011 44519</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#53</b></td>
+              <td class="td-name">Bhupat Bhai Jerambhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9825530139</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#54</b></td>
+              <td class="td-name">Dhirubhai Jerambhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9979616416</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#55</b></td>
+              <td class="td-name">Gautambhai Jerambhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9913779369</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#56</b></td>
+              <td class="td-name">Rameshbhai Odhavjibhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9824811225</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#57</b></td>
+              <td class="td-name">Dharamshibhai Odhavjibhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">8485903370</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#58</b></td>
+              <td class="td-name">Ashokbhai Odhavjibhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9374621545</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#59</b></td>
+              <td class="td-name">Jagdishbhai Keshubhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9426139949</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#60</b></td>
+              <td class="td-name">Hirenbhai Vallabhbhai (Harenbhai)</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9824121151</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#61</b></td>
+              <td class="td-name">Nileshbhai Vallabhbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">9879336661</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#62</b></td>
+              <td class="td-name">Narshibhai Ganeshbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">6352003221</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#63</b></td>
+              <td class="td-name">Bhupatbhai Ganeshbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">8980970032</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#64</b></td>
+              <td class="td-name">Vinubhai Ganeshbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9727299431</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#65</b></td>
+              <td class="td-name">Harshadbhai Arjanbhai Lukhi</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9979947117</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#66</b></td>
+              <td class="td-name">Manojbhai Arjanbhai Lukhi</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9925352178</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#67</b></td>
+              <td class="td-name">Kishor Bhai Kanjibhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98200 06357</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#68</b></td>
+              <td class="td-name">Nileshbhai Jivrajbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9867462053</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#69</b></td>
+              <td class="td-name">Haresh Bholo</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9275055636</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#70</b></td>
+              <td class="td-name">Arvindbhai Vallabhbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">8140974070</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#71</b></td>
+              <td class="td-name">Virjibhai Lavjibhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9825978408</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#72</b></td>
+              <td class="td-name">Pravinbhai Vitthalbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9825272006</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#73</b></td>
+              <td class="td-name">Sureshbhai Vitthalbhai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9825151280</td>
+              <td class="td-status col-center"><span class="badge b-pending">⏳ બાકી</span></td>
+              <td class="td-sender col-center">—</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">—</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#74</b></td>
+              <td class="td-name">Alpesh Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">99250 61835</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#75</b></td>
+              <td class="td-name">Dinesh Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">93216 63001</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#76</b></td>
+              <td class="td-name">Vaaljibhai Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">94274 75749</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#77</b></td>
+              <td class="td-name">Haribhai Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">99795 94798</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#78</b></td>
+              <td class="td-name">Tejas Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">98247 12995</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#79</b></td>
+              <td class="td-name">Bhanu Anida</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">99786 15218</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#80</b></td>
+              <td class="td-name">Asu Golrama</td>
+              <td class="td-cat col-center"><span class="badge b-sarvo">સર્વો</span></td>
+              <td class="td-phone col-center">97122 23634</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સર્વો</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#81</b></td>
+              <td class="td-name">Bharatkaka Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98194 25755</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#82</b></td>
+              <td class="td-name">Chetu Kaki Mumbai</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">98196 78148</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#83</b></td>
+              <td class="td-name">Asha Paresh Nari</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99787 15273</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#84</b></td>
+              <td class="td-name">Sadhna Sanosara</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">90289 91910</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#85</b></td>
+              <td class="td-name">Hina Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">97232 57073</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#86</b></td>
+              <td class="td-name">Kailasben Anida</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">78742 91554</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#87</b></td>
+              <td class="td-name">Geeta Lathi</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99042 01847</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#88</b></td>
+              <td class="td-name">Naina Limda</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99797 13715</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#89</b></td>
+              <td class="td-name">Silpa Ahmedabad</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99986 50656</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#90</b></td>
+              <td class="td-name">Rekha Tana</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">99981 54056</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#91</b></td>
+              <td class="td-name">Manish Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9825488735</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#92</b></td>
+              <td class="td-name">Jivrajkaka Mandva</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9825092383</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#93</b></td>
+              <td class="td-name">Dipakkaka</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">9820135476</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
+            <tr>
+              <td class="td-sr"><b>#94</b></td>
+              <td class="td-name">kajal pankaj</td>
+              <td class="td-cat col-center"><span class="badge b-sajode">સજોડે</span></td>
+              <td class="td-phone col-center">7567009401</td>
+              <td class="td-status col-center"><span class="badge b-sent">✅ મોકલેલ</span></td>
+              <td class="td-sender col-center"><span class="badge b-varsha">વર્ષાબેન</span></td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">માંગુકિયા પરિવાર સજોડે</td>
+              <td class="check-cell"><span class="print-box"></span></td>
+              <td class="check-cell"><span class="print-box"></span></td>
+            </tr>
         </tbody>
       </table>
     </div>
@@ -754,7 +3964,7 @@
                 </div>
                 <div class="check-label">
                   <span class="box-square">${callCheck}</span>
-                  ફોન પર વાતચીત
+                  ફોન પર આમંત્રણ
                 </div>
               </div>
             </div>
@@ -762,7 +3972,7 @@
         }).join('');
       }
 
-      // 2. Render Desktop / Print Table View
+      // 2. Render Desktop / A4 Portrait Print Table View
       const tbody = document.getElementById("table-body");
       if (filtered.length === 0) {
         tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:30px; color:#64748b;">કોઈ મહેમાન મળ્યા નથી.</td></tr>`;
@@ -793,13 +4003,13 @@
 
           return `
             <tr>
-              <td class="col-center"><b>#${c["Sr. No."]}</b></td>
-              <td><b>${c["Name"]}</b></td>
-              <td>${catBadge}</td>
-              <td style="font-family:monospace; font-weight:600;">${phone}</td>
-              <td>${statusBadge}</td>
-              <td>${senderBadge}</td>
-              <td style="font-size:0.75rem; color:#475569;">${pdfName}</td>
+              <td class="td-sr"><b>#${c["Sr. No."]}</b></td>
+              <td class="td-name">${c["Name"]}</td>
+              <td class="td-cat col-center">${catBadge}</td>
+              <td class="td-phone col-center">${phone}</td>
+              <td class="td-status col-center">${statusBadge}</td>
+              <td class="td-sender col-center">${senderBadge}</td>
+              <td class="td-pdf" style="font-size:0.75rem; color:#475569;">${pdfName}</td>
               <td class="check-cell"><span class="print-box">${waCheck}</span></td>
               <td class="check-cell"><span class="print-box">${callCheck}</span></td>
             </tr>

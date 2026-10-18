@@ -123,19 +123,12 @@ def save_state(contacts):
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(contacts, f, indent=2, ensure_ascii=False)
 
-    # 2. Update index.html embedded data
-    html_file = os.path.join(BASE_DIR, "index.html")
-    if os.path.exists(html_file):
-        try:
-            with open(html_file, "r", encoding="utf-8") as f:
-                content = f.read()
-            pattern = r"let contactsData = \[.*?\];"
-            replacement = "let contactsData = " + json.dumps(contacts, ensure_ascii=False) + ";"
-            new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-            with open(html_file, "w", encoding="utf-8") as f:
-                f.write(new_content)
-        except Exception:
-            pass
+    # 2. Update index.html and compile A4 Portrait PDF
+    try:
+        from build_site_and_pdf import build_site_and_pdf
+        build_site_and_pdf(contacts)
+    except Exception as e:
+        print(f"[Warning] Failed to update HTML/PDF: {e}")
     
     # 3. Save Excel
     wb = openpyxl.Workbook()
@@ -312,7 +305,15 @@ def main():
     parser.add_argument("--batch-size", type=int, default=0, help="Limit number of contacts to send in this run (0 = all)")
     parser.add_argument("--start-sr", type=int, default=0, help="Start Sr. No. to send (e.g. 1)")
     parser.add_argument("--end-sr", type=int, default=0, help="End Sr. No. to send (e.g. 30)")
+    parser.add_argument("--generate-pdf", action="store_true", help="Compile and generate A4 Portrait PDF with big fonts")
     args = parser.parse_args()
+
+    # Handle Generate PDF
+    if args.generate_pdf:
+        from build_site_and_pdf import build_site_and_pdf
+        print("Compiling site and generating A4 Portrait PDF...")
+        build_site_and_pdf()
+        return
 
     # 1. Handle Login
     if args.login:
