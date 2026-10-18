@@ -45,6 +45,8 @@ def build_site_and_pdf(contacts=None):
                 sender_badge = '<span class="badge b-mahesh">મહેશભાઈ</span>'
             elif "6351838451" in sender_raw:
                 sender_badge = '<span class="badge b-varsha">વર્ષાબેન</span>'
+            elif "9825586722" in sender_raw or "prakash" in sender_raw.lower():
+                sender_badge = '<span class="badge b-prakash">પ્રકાશભાઈ</span>'
             else:
                 sender_badge = '<span class="badge b-sent">મોકલેલ</span>'
         else:
@@ -89,6 +91,8 @@ def build_site_and_pdf(contacts=None):
             sender_badge = '<span class="badge b-mahesh">મહેશભાઈ</span>'
         elif "6351838451" in sender_raw:
             sender_badge = '<span class="badge b-varsha">વર્ષાબેન</span>'
+        elif "9825586722" in sender_raw or "prakash" in sender_raw.lower():
+            sender_badge = '<span class="badge b-prakash">પ્રકાશભાઈ</span>'
 
         wa_mark = "✅" if c.get("વોટ્સએપ OK") else ""
         call_mark = "✅" if c.get("ફોન પર વાતચીત") else ""
@@ -155,6 +159,8 @@ def build_site_and_pdf(contacts=None):
       --mahesh-bg: #eff6ff;
       --varsha: #db2777;
       --varsha-bg: #fdf2f8;
+      --prakash: #d97706;
+      --prakash-bg: #fffbeb;
     }}
 
     * {{
@@ -519,6 +525,7 @@ def build_site_and_pdf(contacts=None):
     .b-pending {{ background: var(--pending-bg); color: var(--pending); border: 1px solid #fde68a; }}
     .b-mahesh {{ background: var(--mahesh-bg); color: var(--mahesh); border: 1px solid #bfdbfe; }}
     .b-varsha {{ background: var(--varsha-bg); color: var(--varsha); border: 1px solid #fbcfe8; }}
+    .b-prakash {{ background: var(--prakash-bg); color: var(--prakash); border: 1px solid #fde68a; }}
 
     /* Desktop Table (Hidden on Mobile) */
     .table-box {{
