@@ -1,294 +1,390 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="gu">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maitry & Smit — Live Invitation Tracker</title>
+  <title>મૈત્રી અને સ્મિત — નિમંત્રણ પત્રિકા ટ્રેકર (Live Tracker)</title>
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
       --primary: #1e3a8a;
       --primary-light: #3b82f6;
-      --primary-dark: #0f172a;
-      --accent: #d97706;
-      --accent-gold: #f59e0b;
-      --bg: #090d16;
-      --card-bg: rgba(18, 25, 43, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --success-bg: rgba(16, 185, 129, 0.15);
-      --pending: #f59e0b;
-      --pending-bg: rgba(245, 158, 11, 0.15);
-      --sajode: #8b5cf6;
-      --sarvo: #06b6d4;
-      --mahesh: #3b82f6;
-      --varsha: #ec4899;
+      --gold: #b45309;
+      --gold-light: #fef3c7;
+      --success: #059669;
+      --success-bg: #ecfdf5;
+      --pending: #d97706;
+      --pending-bg: #fffbeb;
+      --sajode: #7c3aed;
+      --sajode-bg: #f5f3ff;
+      --sarvo: #0891b2;
+      --sarvo-bg: #ecfeff;
+      --mahesh: #2563eb;
+      --mahesh-bg: #eff6ff;
+      --varsha: #db2777;
+      --varsha-bg: #fdf2f8;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background: var(--bg);
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(217, 119, 6, 0.12) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 24px 16px;
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 16px 12px;
+      line-height: 1.5;
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
     }
 
-    /* Header */
+    /* Header (Mobile First) */
     header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
       text-align: center;
-      margin-bottom: 32px;
-      position: relative;
     }
 
-    .badge-pill {
+    .badge-top {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
+      padding: 4px 12px;
       border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      background: rgba(245, 158, 11, 0.15);
-      color: var(--accent-gold);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .badge-pulse {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 10px var(--success);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.3); }
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #fcd34d 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background: #eff6ff;
+      color: var(--primary);
       margin-bottom: 8px;
     }
 
-    .subtitle {
-      color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 0 auto;
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
     }
 
-    /* Stat Cards */
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .sub-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Action Toolbar (Mobile-first) */
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-action {
+      flex: 1;
+      min-width: 140px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-pdf {
+      background: #1e3a8a;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+    }
+
+    .btn-pdf:hover {
+      background: #1e40af;
+      transform: translateY(-1px);
+    }
+
+    .btn-refresh {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-refresh:hover {
+      background: #f1f5f9;
+    }
+
+    /* Quick Summary Cards (2x2 grid on mobile) */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      h1 { font-size: 2rem; }
     }
 
     .stat-card {
       background: var(--card-bg);
-      backdrop-filter: blur(12px);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      border-top: 4px solid var(--primary);
     }
 
-    .stat-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
+    .stat-card.c-green { border-top-color: var(--success); }
+    .stat-card.c-gold { border-top-color: var(--gold); }
+    .stat-card.c-blue { border-top-color: var(--mahesh); }
+    .stat-card.c-pink { border-top-color: var(--varsha); }
 
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: var(--accent-gradient, linear-gradient(90deg, #3b82f6, #8b5cf6));
-    }
-
-    .stat-card.gold::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-    .stat-card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
-    .stat-card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-    .stat-card.pink::before { background: linear-gradient(90deg, #ec4899, #f472b6); }
-
-    .stat-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .stat-icon {
-      font-size: 1.2rem;
-    }
-
-    .stat-val {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .stat-desc {
+    .stat-title {
       font-size: 0.75rem;
+      font-weight: 600;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .stat-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
     }
 
     /* Progress bar */
-    .progress-wrap {
+    .progress-box {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
     }
 
-    .progress-header {
+    .progress-labels {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    .progress-bar-bg {
-      background: rgba(255, 255, 255, 0.08);
-      height: 12px;
+    .progress-track {
+      background: #e2e8f0;
+      height: 10px;
       border-radius: 9999px;
       overflow: hidden;
-      position: relative;
     }
 
-    .progress-bar-fill {
+    .progress-fill {
       height: 100%;
-      border-radius: 9999px;
       background: linear-gradient(90deg, #10b981, #06b6d4, #3b82f6);
-      transition: width 1s ease-in-out;
+      border-radius: 9999px;
+      transition: width 0.8s ease;
     }
 
-    /* Controls Bar */
-    .controls-bar {
+    /* Search & Filter Controls */
+    .controls {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .search-box {
-      flex: 1;
-      min-width: 260px;
-      position: relative;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
     .search-input {
       width: 100%;
-      padding: 12px 16px 12px 42px;
+      padding: 12px 14px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      color: #fff;
       font-size: 0.95rem;
+      color: var(--text-main);
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .search-input:focus {
       border-color: var(--primary-light);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
     }
 
-    .search-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-
-    .filters-wrap {
+    .filter-scroll {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .filter-btn {
-      padding: 8px 14px;
+      white-space: nowrap;
+      padding: 8px 12px;
       border-radius: 10px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-muted);
       cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
     }
 
     .filter-btn.active {
       background: var(--primary);
-      border-color: var(--primary-light);
-      color: #fff;
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+      border-color: var(--primary);
+      color: #ffffff;
     }
 
-    /* Table Container */
-    .table-container {
+    /* Cards View for Mobile */
+    .mobile-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .guest-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .gc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .gc-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .gc-sr {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .gc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .gc-phone {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #1e3a8a;
+      font-weight: 600;
+    }
+
+    .gc-checks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px dashed #cbd5e1;
+      margin-top: 8px;
+    }
+
+    .check-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .box-square {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #64748b;
+      border-radius: 4px;
+      background: #ffffff;
+      display: inline-block;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .b-sajode { background: var(--sajode-bg); color: var(--sajode); border: 1px solid #ddd6fe; }
+    .b-sarvo { background: var(--sarvo-bg); color: var(--sarvo); border: 1px solid #cffafe; }
+    .b-sent { background: var(--success-bg); color: var(--success); border: 1px solid #a7f3d0; }
+    .b-pending { background: var(--pending-bg); color: var(--pending); border: 1px solid #fde68a; }
+    .b-mahesh { background: var(--mahesh-bg); color: var(--mahesh); border: 1px solid #bfdbfe; }
+    .b-varsha { background: var(--varsha-bg); color: var(--varsha); border: 1px solid #fbcfe8; }
+
+    /* Desktop Table (Hidden on Mobile) */
+    .table-box {
+      display: none;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      overflow: hidden;
-      backdrop-filter: blur(12px);
+      overflow-x: auto;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+    }
+
+    @media (min-width: 992px) {
+      .table-box { display: block; }
+      .mobile-cards { display: none; }
     }
 
     .custom-table {
@@ -298,235 +394,247 @@
     }
 
     .custom-table th {
-      background: rgba(15, 23, 42, 0.8);
-      padding: 14px 16px;
-      font-size: 0.8rem;
+      background: #f1f5f9;
+      padding: 12px 14px;
+      font-size: 0.75rem;
       font-weight: 700;
-      color: var(--text-muted);
+      color: #475569;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       border-bottom: 1px solid var(--card-border);
     }
 
     .custom-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      font-size: 0.9rem;
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.85rem;
       vertical-align: middle;
     }
 
     .custom-table tr:hover {
-      background: rgba(255, 255, 255, 0.02);
+      background: #f8fafc;
     }
 
-    .sr-col {
-      font-weight: 700;
-      color: var(--text-muted);
-      width: 60px;
+    .col-center { text-align: center; }
+
+    .check-cell {
       text-align: center;
+      width: 130px;
+      background: #fcfcfd;
     }
 
-    .name-col {
-      font-weight: 600;
-      color: #fff;
+    .print-box {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid #475569;
+      border-radius: 4px;
+      background: #ffffff;
+      vertical-align: middle;
     }
 
-    .phone-col {
-      font-family: monospace;
-      color: #93c5fd;
-      font-size: 0.95rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-
-    .badge-sajode {
-      background: rgba(139, 92, 246, 0.15);
-      color: #c4b5fd;
-      border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .badge-sarvo {
-      background: rgba(6, 182, 212, 0.15);
-      color: #67e8f9;
-      border: 1px solid rgba(6, 182, 212, 0.3);
-    }
-
-    .badge-sent {
-      background: rgba(16, 185, 129, 0.15);
-      color: #6ee7b7;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-
-    .badge-pending {
-      background: rgba(245, 158, 11, 0.15);
-      color: #fcd34d;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .badge-mahesh {
-      background: rgba(59, 130, 246, 0.15);
-      color: #93c5fd;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    .badge-varsha {
-      background: rgba(236, 72, 153, 0.15);
-      color: #f472b6;
-      border: 1px solid rgba(236, 72, 153, 0.3);
-    }
-
-    .time-col {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .empty-state {
-      padding: 48px;
-      text-align: center;
-      color: var(--text-muted);
-    }
-
-    /* Mobile Responsive Card Layout */
-    @media (max-width: 768px) {
-      .custom-table thead {
-        display: none;
+    /* =================================================== */
+    /* PRINT / A4 PDF STYLES (Landscape, Clean, High Res)  */
+    /* =================================================== */
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 8mm 8mm 8mm 8mm;
       }
-      .custom-table, .custom-table tbody, .custom-table tr, .custom-table td {
-        display: block;
-        width: 100%;
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
       }
-      .custom-table tr {
-        background: rgba(255, 255, 255, 0.02);
-        border-radius: 12px;
-        margin-bottom: 12px;
-        border: 1px solid var(--card-border);
-        padding: 12px;
+
+      .container {
+        max-width: 100% !important;
+        margin: 0 !important;
       }
+
+      /* Hide interactive controls in print */
+      .action-bar,
+      .controls,
+      .badge-top,
+      .filter-scroll,
+      .btn-action,
+      .search-box {
+        display: none !important;
+      }
+
+      header {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 4px 0 10px 0 !important;
+        margin-bottom: 10px !important;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 1.4rem !important;
+        color: #000000 !important;
+      }
+
+      .stats-grid {
+        display: flex !important;
+        justify-content: space-around;
+        gap: 8px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .stat-card {
+        padding: 6px 10px !important;
+        border: 1px solid #94a3b8 !important;
+        box-shadow: none !important;
+      }
+
+      .stat-value { font-size: 1.1rem !important; color: #000 !important; }
+      .progress-box { display: none !important; }
+
+      /* Always show table on print */
+      .mobile-cards { display: none !important; }
+      .table-box {
+        display: block !important;
+        border: 1px solid #000000 !important;
+        box-shadow: none !important;
+      }
+
+      .custom-table {
+        width: 100% !important;
+      }
+
+      .custom-table th {
+        background: #e2e8f0 !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+        padding: 6px 8px !important;
+        font-size: 0.72rem !important;
+      }
+
       .custom-table td {
-        padding: 6px 0;
-        border: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        border: 1px solid #cbd5e1 !important;
+        padding: 5px 6px !important;
+        font-size: 0.75rem !important;
+        color: #000000 !important;
       }
-      .custom-table td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        color: var(--text-muted);
-        font-size: 0.75rem;
-        text-transform: uppercase;
+
+      .badge {
+        border: 1px solid #64748b !important;
+        color: #000000 !important;
+        background: transparent !important;
+        font-size: 0.65rem !important;
+        padding: 2px 4px !important;
       }
-      .sr-col { text-align: left; }
-      h1 { font-size: 1.8rem; }
+
+      .print-box {
+        border: 1.5px solid #000000 !important;
+        width: 16px !important;
+        height: 16px !important;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+    
+    <!-- Header -->
     <header>
-      <div class="badge-pill">
-        <span class="badge-pulse"></span>
-        Live Real-Time Dispatch Dashboard
+      <div class="badge-top">
+        <span class="pulse-dot"></span>
+        લાઈવ નિમંત્રણ ટ્રેકર (Live Tracker)
       </div>
-      <h1>Maitry & Smit Invitation Tracker</h1>
-      <p class="subtitle">Real-time status of wedding & engagement invitation PDFs dispatched via WhatsApp</p>
+      <h1>મૈત્રી & સ્મિત — લગ્ન / સગાઈ નિમંત્રણ</h1>
+      <p class="sub-title">WhatsApp નિમંત્રણ પત્રિકા વિતરણ અને કોલિંગ ટ્રેકર (સજોડે / સર્વો)</p>
     </header>
 
-    <!-- Top Summary Cards -->
+    <!-- Top Action Buttons (Mobile First) -->
+    <div class="action-bar">
+      <button class="btn-action btn-pdf" onclick="window.print()">
+        📄 A4 PDF ડાઉનલોડ / પ્રિન્ટ કરો
+      </button>
+      <button class="btn-action btn-refresh" onclick="loadData()">
+        🔄 રીફ્રેશ (Refresh)
+      </button>
+    </div>
+
+    <!-- Quick Stats -->
     <div class="stats-grid">
-      <div class="stat-card green">
-        <div class="stat-header">
-          <span class="stat-label">Delivered Successfully</span>
-          <span class="stat-icon">✅</span>
-        </div>
-        <div class="stat-val" id="stat-sent">--</div>
-        <div class="stat-desc" id="stat-sent-pct">--% of total guest list</div>
+      <div class="stat-card c-green">
+        <div class="stat-title">મોકલાઈ ગયું (Sent)</div>
+        <div class="stat-value" id="stat-sent">--</div>
+        <div class="stat-sub" id="stat-sent-pct">--% કામ પૂરું</div>
       </div>
 
-      <div class="stat-card gold">
-        <div class="stat-header">
-          <span class="stat-label">Remaining Pending</span>
-          <span class="stat-icon">⏳</span>
-        </div>
-        <div class="stat-val" id="stat-pending">--</div>
-        <div class="stat-desc">Awaiting dispatch</div>
+      <div class="stat-card c-gold">
+        <div class="stat-title">બાકી છે (Pending)</div>
+        <div class="stat-value" id="stat-pending">--</div>
+        <div class="stat-sub">મોકલવાના બાકી</div>
       </div>
 
-      <div class="stat-card blue">
-        <div class="stat-header">
-          <span class="stat-label">Maheshbhai (Account 1)</span>
-          <span class="stat-icon">📱</span>
-        </div>
-        <div class="stat-val" id="stat-mahesh">--</div>
-        <div class="stat-desc">Sent via 9879881172</div>
+      <div class="stat-card c-blue">
+        <div class="stat-title">મહેશભાઈ Mangukiya</div>
+        <div class="stat-value" id="stat-mahesh">--</div>
+        <div class="stat-sub">9879881172 વડે</div>
       </div>
 
-      <div class="stat-card pink">
-        <div class="stat-header">
-          <span class="stat-label">Varshaben (Account 2)</span>
-          <span class="stat-icon">📲</span>
-        </div>
-        <div class="stat-val" id="stat-varsha">--</div>
-        <div class="stat-desc">Sent via 6351838451</div>
+      <div class="stat-card c-pink">
+        <div class="stat-title">વર્ષાબેન Mangukiya</div>
+        <div class="stat-value" id="stat-varsha">--</div>
+        <div class="stat-sub">6351838451 વડે</div>
       </div>
     </div>
 
     <!-- Progress Bar -->
-    <div class="progress-wrap">
-      <div class="progress-header">
-        <span>Overall Dispatch Progress</span>
-        <span id="progress-text">0% Completed</span>
+    <div class="progress-box">
+      <div class="progress-labels">
+        <span>કુલ કામગીરી પ્રગતિ (Total Progress)</span>
+        <span id="progress-text">--%</span>
       </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progress-bar" style="width: 0%;"></div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-bar" style="width: 0%;"></div>
       </div>
     </div>
 
     <!-- Search & Filter Controls -->
-    <div class="controls-bar">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search by guest name, phone, or village...">
-      </div>
+    <div class="controls">
+      <input type="text" class="search-input" id="search-input" placeholder="🔍 નામ, ગામ કે ફોન નંબર શોધો...">
 
-      <div class="filters-wrap">
-        <button class="filter-btn active" data-filter="all">All (<span id="count-all">0</span>)</button>
-        <button class="filter-btn" data-filter="sent">Delivered (<span id="count-sent">0</span>)</button>
-        <button class="filter-btn" data-filter="pending">Pending (<span id="count-pending">0</span>)</button>
-        <button class="filter-btn" data-filter="sajode">Sajode (👥 2)</button>
-        <button class="filter-btn" data-filter="sarvo">Sarvo (👨‍👩‍👧‍👦 Family)</button>
-        <button class="filter-btn" data-filter="mahesh">Maheshbhai</button>
-        <button class="filter-btn" data-filter="varsha">Varshaben</button>
+      <div class="filter-scroll">
+        <button class="filter-btn active" data-filter="all">બધા (<span id="c-all">0</span>)</button>
+        <button class="filter-btn" data-filter="sent">મોકલેલ (<span id="c-sent">0</span>)</button>
+        <button class="filter-btn" data-filter="pending">બાકી (<span id="c-pending">0</span>)</button>
+        <button class="filter-btn" data-filter="sajode">સજોડે (👥 2)</button>
+        <button class="filter-btn" data-filter="sarvo">સર્વો (👨‍👩‍👧‍👦 પરિવાર)</button>
+        <button class="filter-btn" data-filter="mahesh">મહેશભાઈ</button>
+        <button class="filter-btn" data-filter="varsha">વર્ષાબેન</button>
       </div>
     </div>
 
-    <!-- Guest Table -->
-    <div class="table-container">
+    <!-- Mobile Cards View -->
+    <div class="mobile-cards" id="mobile-cards-container">
+      <!-- Populated via JS -->
+    </div>
+
+    <!-- Desktop & Print Table View -->
+    <div class="table-box">
       <table class="custom-table">
         <thead>
           <tr>
-            <th class="sr-col">Sr.</th>
-            <th>Guest Name</th>
-            <th>Category</th>
-            <th>Phone Number</th>
-            <th>Status</th>
-            <th>Sender Account</th>
-            <th>PDF Delivered</th>
-            <th>Timestamp</th>
+            <th class="col-center" style="width: 45px;">ક્રમ</th>
+            <th>મહેમાનનું નામ</th>
+            <th style="width: 90px;">શ્રેણી</th>
+            <th>ફોન નંબર</th>
+            <th>સ્ટેટસ</th>
+            <th>મોકલનાર</th>
+            <th>PDF પત્રિકા</th>
+            <th class="check-cell" style="background:#fef3c7; color:#92400e;">વોટ્સએપ OK?</th>
+            <th class="check-cell" style="background:#dbeafe; color:#1e40af;">ફોન પર વાતચીત?</th>
           </tr>
         </thead>
         <tbody id="table-body">
-          <!-- Dynamically populated -->
+          <!-- Populated via JS -->
         </tbody>
       </table>
     </div>
@@ -534,7 +642,7 @@
   </div>
 
   <script>
-    let contactsData = [{"Sr. No.": 1, "Name": "Ghanshyam.Patel.Ujalvav", "Phone 1": "98255 16096", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825516096", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:21:22", "Recipient Number": "919825516096"}, {"Sr. No.": 2, "Name": "Raju Patel Amadavad", "Phone 1": "98797 18755", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919879718755", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:21:40", "Recipient Number": "919879718755"}, {"Sr. No.": 3, "Name": "Sagar.Bhano.Haliyad", "Phone 1": "95869 98985", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919586998985", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:21:59", "Recipient Number": "919586998985"}, {"Sr. No.": 4, "Name": "Ramesh. Patel. Bosadava", "Phone 1": "99741 48003", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919974148003", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:22:21", "Recipient Number": "919974148003"}, {"Sr. No.": 5, "Name": "Umesh.Bhano", "Phone 1": "98251 35657", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825135657", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:22:43", "Recipient Number": "919825135657"}, {"Sr. No.": 6, "Name": "Vallabh.Patel.Budhel", "Phone 1": "98249 68076", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824968076", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:23:08", "Recipient Number": "919824968076"}, {"Sr. No.": 7, "Name": "Himmat.Patel.T1", "Phone 1": "97272 53375", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919727253375", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:23:31", "Recipient Number": "919727253375"}, {"Sr. No.": 8, "Name": "Pravin Patel. Dharuka", "Phone 1": "98255 78701", "Phone 2": "90332 65254", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825578701", "WhatsApp Phone 2": "+919033265254", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:23:50", "Recipient Number": "919825578701"}, {"Sr. No.": 9, "Name": "Manshuk.Patel", "Phone 1": "98243 82600", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824382600", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:24:09", "Recipient Number": "919824382600"}, {"Sr. No.": 10, "Name": "Ramesh.Patel.Salanparda", "Phone 1": "98258 54011", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825854011", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:24:33", "Recipient Number": "919825854011"}, {"Sr. No.": 11, "Name": "Ashok.Patel.Pipariya", "Phone 1": "97272 67854", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919727267854", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:24:52", "Recipient Number": "919727267854"}, {"Sr. No.": 12, "Name": "Jitu.Patel", "Phone 1": "99130 72055", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919913072055", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:25:11", "Recipient Number": "919913072055"}, {"Sr. No.": 13, "Name": "Bhautik Jasani", "Phone 1": "99247 85169", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919924785169", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:25:31", "Recipient Number": "919924785169"}, {"Sr. No.": 14, "Name": "Dharmesh Patel", "Phone 1": "94298 83005", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919429883005", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:25:55", "Recipient Number": "919429883005"}, {"Sr. No.": 15, "Name": "Keyur Bhano Kapardi", "Phone 1": "93754 73020", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919375473020", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:26:16", "Recipient Number": "919375473020"}, {"Sr. No.": 16, "Name": "Hira Patel. Khijadiya", "Phone 1": "93273 75401", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919327375401", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:26:35", "Recipient Number": "919327375401"}, {"Sr. No.": 17, "Name": "Jivaraj .Patel Gathhula", "Phone 1": "98259 54583", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825954583", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:26:55", "Recipient Number": "919825954583"}, {"Sr. No.": 18, "Name": "Keyur Mitaxi", "Phone 1": "97379 24012", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919737924012", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:27:15", "Recipient Number": "919737924012"}, {"Sr. No.": 19, "Name": "Dixit Jiju (Jyoti)", "Phone 1": "+97 1585526281", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+971585526281", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:27:37", "Recipient Number": "971585526281"}, {"Sr. No.": 20, "Name": "Karashan.Bhai.Parvala", "Phone 1": "98241 25510", "Phone 2": "98251 25510", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824125510", "WhatsApp Phone 2": "+919825125510", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:27:56", "Recipient Number": "919824125510"}, {"Sr. No.": 21, "Name": "Eshavar.Paravala.Kajavdra", "Phone 1": "97147 01517", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919714701517", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:28:14", "Recipient Number": "919714701517"}, {"Sr. No.": 22, "Name": "Jaydip.Valukad Dhameliya", "Phone 1": "90670 32685", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919067032685", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:28:34", "Recipient Number": "919067032685"}, {"Sr. No.": 23, "Name": "Champak Bhai Valukad", "Phone 1": "96386 40172", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919638640172", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:28:52", "Recipient Number": "919638640172"}, {"Sr. No.": 24, "Name": "Dharmesh.Rampar", "Phone 1": "99090 90690", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919909090690", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:29:17", "Recipient Number": "919909090690"}, {"Sr. No.": 25, "Name": "Arjun.Ishvar.Valukad", "Phone 1": "70699 23426", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+917069923426", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:29:36", "Recipient Number": "917069923426"}, {"Sr. No.": 26, "Name": "Dashbhai.Rampar", "Phone 1": "81418 32662", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918141832662", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:30:25", "Recipient Number": "918141832662"}, {"Sr. No.": 27, "Name": "Ashabhabhi Nari", "Phone 1": "82389 11483", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918238911483", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:30:46", "Recipient Number": "918238911483"}, {"Sr. No.": 28, "Name": "Mahendrabhai", "Phone 1": "+1 (214) 729-6784", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+12147296784", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:31:09", "Recipient Number": "12147296784"}, {"Sr. No.": 29, "Name": "Dineshbhai Sanosara", "Phone 1": "98980 34700", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919898034700", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:31:36", "Recipient Number": "919898034700"}, {"Sr. No.": 30, "Name": "Jagadish.Sanosara", "Phone 1": "98248 93334", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824893334", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:31:58", "Recipient Number": "919824893334"}, {"Sr. No.": 31, "Name": "Nilesh Kamlej", "Phone 1": "97693 45945", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919769345945", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 32, "Name": "Keyur Kamalej", "Phone 1": "99204 56356", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919920456356", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 33, "Name": "Dor.Ramesh.Bhavangar", "Phone 1": "93276 08084", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919327608084", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 34, "Name": "Nagji.Premji.Dadva", "Phone 1": "98259 15245", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919825915245", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 35, "Name": "Kalpeshbhai Nagjibhai", "Phone 1": "9820829008", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919820829008", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 36, "Name": "Mahesh.Arajan.Dadva", "Phone 1": "97233 24357", "Phone 2": "99132 99779", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919723324357", "WhatsApp Phone 2": "+919913299779", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 37, "Name": "Ghanshyam.Premaji", "Phone 1": "98254 80382", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825480382", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 38, "Name": "Pravin Kuraji Am", "Phone 1": "98240 80369", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824080369", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 39, "Name": "Jitu Bajud", "Phone 1": "93748 33008", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919374833008", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 40, "Name": "Himmatlal L I C Mangukiya", "Phone 1": "98255 37244", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825537244", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 41, "Name": "Damji.Goyani", "Phone 1": "94280 78065", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919428078065", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 42, "Name": "Mohanbhai Vitthalbhai Mangukiya", "Phone 1": "94274 30252", "Phone 2": "91064 67680", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919427430252", "WhatsApp Phone 2": "+919106467680", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 43, "Name": "Janak.M.Surat", "Phone 1": "96012 91048", "Phone 2": "99245 64844", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919601291048", "WhatsApp Phone 2": "+919924564844", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 44, "Name": "Naresh.H.Dadva", "Phone 1": "97232 83070", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919723283070", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 45, "Name": "Arvindbhai Hamabhai Mangukiya", "Phone 1": "84888 66704", "Phone 2": "99138 68477", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918488866704", "WhatsApp Phone 2": "+919913868477", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 46, "Name": "Tushar.M.Dadva.", "Phone 1": "99040 20393", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919904020393", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 47, "Name": "Mayur M.V.Dadva", "Phone 1": "84600 58961", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918460058961", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 48, "Name": "Dharmeshbhai Nathubhai", "Phone 1": "98243 48641", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824348641", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 49, "Name": "Maheshbhai Nathubhai Mangukiya", "Phone 1": "9879881172", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919879881172", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 50, "Name": "Dipu Janak Mangukiya", "Phone 1": "884 932 1147", "Phone 2": "88661 58204", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918849321147", "WhatsApp Phone 2": "+918866158204", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 51, "Name": "Soham Naresh Mangukiya", "Phone 1": "91061 21370", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919106121370", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 52, "Name": "Dharmik Arvind Mangukiya", "Phone 1": "84011 44519", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918401144519", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 53, "Name": "Bhupat Bhai Jerambhai", "Phone 1": "9825530139", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919825530139", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 54, "Name": "Dhirubhai Jerambhai", "Phone 1": "9979616416", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919979616416", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 55, "Name": "Gautambhai Jerambhai", "Phone 1": "9913779369", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919913779369", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 56, "Name": "Rameshbhai Odhavjibhai", "Phone 1": "9824811225", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824811225", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 57, "Name": "Dharamshibhai Odhavjibhai", "Phone 1": "8485903370", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918485903370", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 58, "Name": "Ashokbhai Odhavjibhai", "Phone 1": "9374621545", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919374621545", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 59, "Name": "Jagdishbhai Keshubhai", "Phone 1": "9426139949", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919426139949", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 60, "Name": "Hirenbhai Vallabhbhai (Harenbhai)", "Phone 1": "9824121151", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824121151", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 61, "Name": "Nileshbhai Vallabhbhai", "Phone 1": "9879336661", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919879336661", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 62, "Name": "Narshibhai Ganeshbhai", "Phone 1": "6352003221", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+916352003221", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 63, "Name": "Bhupatbhai Ganeshbhai", "Phone 1": "8980970032", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918980970032", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 64, "Name": "Vinubhai Ganeshbhai", "Phone 1": "9727299431", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919727299431", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 65, "Name": "Harshadbhai Arjanbhai Lukhi", "Phone 1": "9979947117", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919979947117", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 66, "Name": "Manojbhai Arjanbhai Lukhi", "Phone 1": "9925352178", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919925352178", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 67, "Name": "Kishor Bhai Kanjibhai", "Phone 1": "98200 06357", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919820006357", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 68, "Name": "Nileshbhai Jivrajbhai", "Phone 1": "9867462053", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919867462053", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 69, "Name": "Haresh Bholo", "Phone 1": "9275055636", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919275055636", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 70, "Name": "Arvindbhai Vallabhbhai", "Phone 1": "8140974070", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918140974070", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 71, "Name": "Virjibhai Lavjibhai", "Phone 1": "9825978408", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825978408", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 72, "Name": "Pravinbhai Vitthalbhai", "Phone 1": "9825272006", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825272006", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 73, "Name": "Sureshbhai Vitthalbhai", "Phone 1": "9825151280", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825151280", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": ""}, {"Sr. No.": 74, "Name": "Alpesh Mandva", "Phone 1": "99250 61835", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919925061835", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:39:55", "Recipient Number": "919925061835"}, {"Sr. No.": 75, "Name": "Dinesh Mandva", "Phone 1": "93216 63001", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919321663001", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:40:15", "Recipient Number": "919321663001"}, {"Sr. No.": 76, "Name": "Vaaljibhai Mandva", "Phone 1": "94274 75749", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919427475749", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:40:34", "Recipient Number": "919427475749"}, {"Sr. No.": 77, "Name": "Haribhai Mandva", "Phone 1": "99795 94798", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919979594798", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:40:52", "Recipient Number": "919979594798"}, {"Sr. No.": 78, "Name": "Tejas Mandva", "Phone 1": "98247 12995", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824712995", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:41:11", "Recipient Number": "919824712995"}, {"Sr. No.": 79, "Name": "Bhanu Anida", "Phone 1": "99786 15218", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919978615218", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:41:34", "Recipient Number": "919978615218"}, {"Sr. No.": 80, "Name": "Asu Golrama", "Phone 1": "97122 23634", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919712223634", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "6351838451 (Varshaben Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:50:08", "Recipient Number": "919712223634"}, {"Sr. No.": 81, "Name": "Bharatkaka Mandva", "Phone 1": "98194 25755", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919819425755", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:42:11", "Recipient Number": "919819425755"}, {"Sr. No.": 82, "Name": "Chetu Kaki Mumbai", "Phone 1": "98196 78148", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919819678148", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:42:31", "Recipient Number": "919819678148"}, {"Sr. No.": 83, "Name": "Asha Paresh Nari", "Phone 1": "99787 15273", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919978715273", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:42:49", "Recipient Number": "919978715273"}, {"Sr. No.": 84, "Name": "Sadhna Sanosara", "Phone 1": "90289 91910", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919028991910", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "6351838451 (Varshaben Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:50:08", "Recipient Number": "919028991910"}, {"Sr. No.": 85, "Name": "Hina Mandva", "Phone 1": "97232 57073", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919723257073", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:43:24", "Recipient Number": "919723257073"}, {"Sr. No.": 86, "Name": "Kailasben Anida", "Phone 1": "78742 91554", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+917874291554", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:43:43", "Recipient Number": "917874291554"}, {"Sr. No.": 87, "Name": "Geeta Lathi", "Phone 1": "99042 01847", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919904201847", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:03", "Recipient Number": "919904201847"}, {"Sr. No.": 88, "Name": "Naina Limda", "Phone 1": "99797 13715", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919979713715", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:20", "Recipient Number": "919979713715"}, {"Sr. No.": 89, "Name": "Silpa Ahmedabad", "Phone 1": "99986 50656", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919998650656", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:37", "Recipient Number": "919998650656"}, {"Sr. No.": 90, "Name": "Rekha Tana", "Phone 1": "99981 54056", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919998154056", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:55", "Recipient Number": "919998154056"}, {"Sr. No.": 91, "Name": "Manish Mandva", "Phone 1": "9825488735", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825488735", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:45:16", "Recipient Number": "919825488735"}, {"Sr. No.": 92, "Name": "Jivrajkaka Mandva", "Phone 1": "9825092383", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825092383", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:45:37", "Recipient Number": "919825092383"}, {"Sr. No.": 93, "Name": "Dipakkaka", "Phone 1": "9820135476", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919820135476", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:45:57", "Recipient Number": "919820135476"}, {"Sr. No.": 94, "Name": "kajal pankaj", "Phone 1": "7567009401", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+917567009401", "WhatsApp Phone 2": "", "Recipient Number": "917567009401", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Sent From (Sender)": "6351838451 (Varshaben Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:50:08", "Notes": "Added on request"}];
+    let contactsData = [{"Sr. No.": 1, "Name": "Ghanshyam.Patel.Ujalvav", "Phone 1": "98255 16096", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825516096", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:21:22", "Recipient Number": "919825516096", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 2, "Name": "Raju Patel Amadavad", "Phone 1": "98797 18755", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919879718755", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:21:40", "Recipient Number": "919879718755", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 3, "Name": "Sagar.Bhano.Haliyad", "Phone 1": "95869 98985", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919586998985", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:21:59", "Recipient Number": "919586998985", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 4, "Name": "Ramesh. Patel. Bosadava", "Phone 1": "99741 48003", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919974148003", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:22:21", "Recipient Number": "919974148003", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 5, "Name": "Umesh.Bhano", "Phone 1": "98251 35657", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825135657", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:22:43", "Recipient Number": "919825135657", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 6, "Name": "Vallabh.Patel.Budhel", "Phone 1": "98249 68076", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824968076", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:23:08", "Recipient Number": "919824968076", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 7, "Name": "Himmat.Patel.T1", "Phone 1": "97272 53375", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919727253375", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:23:31", "Recipient Number": "919727253375", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 8, "Name": "Pravin Patel. Dharuka", "Phone 1": "98255 78701", "Phone 2": "90332 65254", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825578701", "WhatsApp Phone 2": "+919033265254", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:23:50", "Recipient Number": "919825578701", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 9, "Name": "Manshuk.Patel", "Phone 1": "98243 82600", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824382600", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:24:09", "Recipient Number": "919824382600", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 10, "Name": "Ramesh.Patel.Salanparda", "Phone 1": "98258 54011", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825854011", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:24:33", "Recipient Number": "919825854011", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 11, "Name": "Ashok.Patel.Pipariya", "Phone 1": "97272 67854", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919727267854", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:24:52", "Recipient Number": "919727267854", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 12, "Name": "Jitu.Patel", "Phone 1": "99130 72055", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919913072055", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:25:11", "Recipient Number": "919913072055", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 13, "Name": "Bhautik Jasani", "Phone 1": "99247 85169", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919924785169", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:25:31", "Recipient Number": "919924785169", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 14, "Name": "Dharmesh Patel", "Phone 1": "94298 83005", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919429883005", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:25:55", "Recipient Number": "919429883005", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 15, "Name": "Keyur Bhano Kapardi", "Phone 1": "93754 73020", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919375473020", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:26:16", "Recipient Number": "919375473020", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 16, "Name": "Hira Patel. Khijadiya", "Phone 1": "93273 75401", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919327375401", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:26:35", "Recipient Number": "919327375401", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 17, "Name": "Jivaraj .Patel Gathhula", "Phone 1": "98259 54583", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825954583", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:26:55", "Recipient Number": "919825954583", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 18, "Name": "Keyur Mitaxi", "Phone 1": "97379 24012", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919737924012", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:27:15", "Recipient Number": "919737924012", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 19, "Name": "Dixit Jiju (Jyoti)", "Phone 1": "+97 1585526281", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+971585526281", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:27:37", "Recipient Number": "971585526281", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 20, "Name": "Karashan.Bhai.Parvala", "Phone 1": "98241 25510", "Phone 2": "98251 25510", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824125510", "WhatsApp Phone 2": "+919825125510", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:27:56", "Recipient Number": "919824125510", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 21, "Name": "Eshavar.Paravala.Kajavdra", "Phone 1": "97147 01517", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919714701517", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:28:14", "Recipient Number": "919714701517", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 22, "Name": "Jaydip.Valukad Dhameliya", "Phone 1": "90670 32685", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919067032685", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:28:34", "Recipient Number": "919067032685", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 23, "Name": "Champak Bhai Valukad", "Phone 1": "96386 40172", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919638640172", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:28:52", "Recipient Number": "919638640172", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 24, "Name": "Dharmesh.Rampar", "Phone 1": "99090 90690", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919909090690", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:29:17", "Recipient Number": "919909090690", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 25, "Name": "Arjun.Ishvar.Valukad", "Phone 1": "70699 23426", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+917069923426", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:29:36", "Recipient Number": "917069923426", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 26, "Name": "Dashbhai.Rampar", "Phone 1": "81418 32662", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918141832662", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:30:25", "Recipient Number": "918141832662", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 27, "Name": "Ashabhabhi Nari", "Phone 1": "82389 11483", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918238911483", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:30:46", "Recipient Number": "918238911483", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 28, "Name": "Mahendrabhai", "Phone 1": "+1 (214) 729-6784", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+12147296784", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:31:09", "Recipient Number": "12147296784", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 29, "Name": "Dineshbhai Sanosara", "Phone 1": "98980 34700", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919898034700", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:31:36", "Recipient Number": "919898034700", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 30, "Name": "Jagadish.Sanosara", "Phone 1": "98248 93334", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824893334", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "9879881172 (Maheshbhai Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:31:58", "Recipient Number": "919824893334", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 31, "Name": "Nilesh Kamlej", "Phone 1": "97693 45945", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919769345945", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 32, "Name": "Keyur Kamalej", "Phone 1": "99204 56356", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919920456356", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 33, "Name": "Dor.Ramesh.Bhavangar", "Phone 1": "93276 08084", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919327608084", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 34, "Name": "Nagji.Premji.Dadva", "Phone 1": "98259 15245", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919825915245", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 35, "Name": "Kalpeshbhai Nagjibhai", "Phone 1": "9820829008", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919820829008", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 36, "Name": "Mahesh.Arajan.Dadva", "Phone 1": "97233 24357", "Phone 2": "99132 99779", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919723324357", "WhatsApp Phone 2": "+919913299779", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 37, "Name": "Ghanshyam.Premaji", "Phone 1": "98254 80382", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825480382", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 38, "Name": "Pravin Kuraji Am", "Phone 1": "98240 80369", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919824080369", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 39, "Name": "Jitu Bajud", "Phone 1": "93748 33008", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919374833008", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 40, "Name": "Himmatlal L I C Mangukiya", "Phone 1": "98255 37244", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825537244", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 41, "Name": "Damji.Goyani", "Phone 1": "94280 78065", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919428078065", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 42, "Name": "Mohanbhai Vitthalbhai Mangukiya", "Phone 1": "94274 30252", "Phone 2": "91064 67680", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919427430252", "WhatsApp Phone 2": "+919106467680", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 43, "Name": "Janak.M.Surat", "Phone 1": "96012 91048", "Phone 2": "99245 64844", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919601291048", "WhatsApp Phone 2": "+919924564844", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 44, "Name": "Naresh.H.Dadva", "Phone 1": "97232 83070", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919723283070", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 45, "Name": "Arvindbhai Hamabhai Mangukiya", "Phone 1": "84888 66704", "Phone 2": "99138 68477", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918488866704", "WhatsApp Phone 2": "+919913868477", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 46, "Name": "Tushar.M.Dadva.", "Phone 1": "99040 20393", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919904020393", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 47, "Name": "Mayur M.V.Dadva", "Phone 1": "84600 58961", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918460058961", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 48, "Name": "Dharmeshbhai Nathubhai", "Phone 1": "98243 48641", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824348641", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 49, "Name": "Maheshbhai Nathubhai Mangukiya", "Phone 1": "9879881172", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919879881172", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 50, "Name": "Dipu Janak Mangukiya", "Phone 1": "884 932 1147", "Phone 2": "88661 58204", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918849321147", "WhatsApp Phone 2": "+918866158204", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 51, "Name": "Soham Naresh Mangukiya", "Phone 1": "91061 21370", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919106121370", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 52, "Name": "Dharmik Arvind Mangukiya", "Phone 1": "84011 44519", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918401144519", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 53, "Name": "Bhupat Bhai Jerambhai", "Phone 1": "9825530139", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919825530139", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 54, "Name": "Dhirubhai Jerambhai", "Phone 1": "9979616416", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919979616416", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 55, "Name": "Gautambhai Jerambhai", "Phone 1": "9913779369", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919913779369", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 56, "Name": "Rameshbhai Odhavjibhai", "Phone 1": "9824811225", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824811225", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 57, "Name": "Dharamshibhai Odhavjibhai", "Phone 1": "8485903370", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+918485903370", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 58, "Name": "Ashokbhai Odhavjibhai", "Phone 1": "9374621545", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919374621545", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 59, "Name": "Jagdishbhai Keshubhai", "Phone 1": "9426139949", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919426139949", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 60, "Name": "Hirenbhai Vallabhbhai (Harenbhai)", "Phone 1": "9824121151", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824121151", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 61, "Name": "Nileshbhai Vallabhbhai", "Phone 1": "9879336661", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919879336661", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 62, "Name": "Narshibhai Ganeshbhai", "Phone 1": "6352003221", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+916352003221", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 63, "Name": "Bhupatbhai Ganeshbhai", "Phone 1": "8980970032", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918980970032", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 64, "Name": "Vinubhai Ganeshbhai", "Phone 1": "9727299431", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919727299431", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 65, "Name": "Harshadbhai Arjanbhai Lukhi", "Phone 1": "9979947117", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919979947117", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 66, "Name": "Manojbhai Arjanbhai Lukhi", "Phone 1": "9925352178", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919925352178", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 67, "Name": "Kishor Bhai Kanjibhai", "Phone 1": "98200 06357", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919820006357", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 68, "Name": "Nileshbhai Jivrajbhai", "Phone 1": "9867462053", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919867462053", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 69, "Name": "Haresh Bholo", "Phone 1": "9275055636", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919275055636", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 70, "Name": "Arvindbhai Vallabhbhai", "Phone 1": "8140974070", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+918140974070", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 71, "Name": "Virjibhai Lavjibhai", "Phone 1": "9825978408", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825978408", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 72, "Name": "Pravinbhai Vitthalbhai", "Phone 1": "9825272006", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825272006", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 73, "Name": "Sureshbhai Vitthalbhai", "Phone 1": "9825151280", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825151280", "WhatsApp Phone 2": "", "Invitation Status": "Pending", "Delivery Method": "WhatsApp", "Notes": "", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 74, "Name": "Alpesh Mandva", "Phone 1": "99250 61835", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919925061835", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:39:55", "Recipient Number": "919925061835", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 75, "Name": "Dinesh Mandva", "Phone 1": "93216 63001", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919321663001", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:40:15", "Recipient Number": "919321663001", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 76, "Name": "Vaaljibhai Mandva", "Phone 1": "94274 75749", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919427475749", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:40:34", "Recipient Number": "919427475749", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 77, "Name": "Haribhai Mandva", "Phone 1": "99795 94798", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919979594798", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:40:52", "Recipient Number": "919979594798", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 78, "Name": "Tejas Mandva", "Phone 1": "98247 12995", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919824712995", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:41:11", "Recipient Number": "919824712995", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 79, "Name": "Bhanu Anida", "Phone 1": "99786 15218", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919978615218", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:41:34", "Recipient Number": "919978615218", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 80, "Name": "Asu Golrama", "Phone 1": "97122 23634", "Phone 2": "", "Category / Note": "Sarvo", "WhatsApp Phone 1": "+919712223634", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "6351838451 (Varshaben Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સર્વો.pdf", "Sent Timestamp": "2026-10-18 21:50:08", "Recipient Number": "919712223634", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 81, "Name": "Bharatkaka Mandva", "Phone 1": "98194 25755", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919819425755", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:42:11", "Recipient Number": "919819425755", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 82, "Name": "Chetu Kaki Mumbai", "Phone 1": "98196 78148", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919819678148", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:42:31", "Recipient Number": "919819678148", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 83, "Name": "Asha Paresh Nari", "Phone 1": "99787 15273", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919978715273", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:42:49", "Recipient Number": "919978715273", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 84, "Name": "Sadhna Sanosara", "Phone 1": "90289 91910", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919028991910", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "6351838451 (Varshaben Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:50:08", "Recipient Number": "919028991910", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 85, "Name": "Hina Mandva", "Phone 1": "97232 57073", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919723257073", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:43:24", "Recipient Number": "919723257073", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 86, "Name": "Kailasben Anida", "Phone 1": "78742 91554", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+917874291554", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:43:43", "Recipient Number": "917874291554", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 87, "Name": "Geeta Lathi", "Phone 1": "99042 01847", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919904201847", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:03", "Recipient Number": "919904201847", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 88, "Name": "Naina Limda", "Phone 1": "99797 13715", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919979713715", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:20", "Recipient Number": "919979713715", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 89, "Name": "Silpa Ahmedabad", "Phone 1": "99986 50656", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919998650656", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:37", "Recipient Number": "919998650656", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 90, "Name": "Rekha Tana", "Phone 1": "99981 54056", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919998154056", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:44:55", "Recipient Number": "919998154056", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 91, "Name": "Manish Mandva", "Phone 1": "9825488735", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825488735", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:45:16", "Recipient Number": "919825488735", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 92, "Name": "Jivrajkaka Mandva", "Phone 1": "9825092383", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919825092383", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:45:37", "Recipient Number": "919825092383", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 93, "Name": "Dipakkaka", "Phone 1": "9820135476", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+919820135476", "WhatsApp Phone 2": "", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Notes": "", "Sent From (Sender)": "account2 (916351838451:2@s.whatsapp.net)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:45:57", "Recipient Number": "919820135476", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}, {"Sr. No.": 94, "Name": "kajal pankaj", "Phone 1": "7567009401", "Phone 2": "", "Category / Note": "Sajode", "WhatsApp Phone 1": "+917567009401", "WhatsApp Phone 2": "", "Recipient Number": "917567009401", "Invitation Status": "Sent", "Delivery Method": "WhatsApp", "Sent From (Sender)": "6351838451 (Varshaben Mangukiya)", "PDF Sent": "માંગુકિયા પરિવાર સજોડે.pdf", "Sent Timestamp": "2026-10-18 21:50:08", "Notes": "Added on request", "વોટ્સએપ OK": "", "ફોન પર વાતચીત": ""}];
     let activeFilter = 'all';
     let searchQuery = '';
 
@@ -546,7 +654,7 @@
           render();
         }
       } catch (e) {
-        console.error("Failed to load json:", e);
+        console.log("Local fetch fallback:", e);
       }
     }
 
@@ -564,23 +672,22 @@
 
       // Update Stats
       document.getElementById("stat-sent").innerText = sentCount;
-      document.getElementById("stat-sent-pct").innerText = `${pct}% of ${total} total`;
+      document.getElementById("stat-sent-pct").innerText = `${pct}% પૂર્ણ (${total} માંથી)`;
       document.getElementById("stat-pending").innerText = pendingCount;
       document.getElementById("stat-mahesh").innerText = maheshSent;
       document.getElementById("stat-varsha").innerText = varshaSent;
 
       // Update Progress
       document.getElementById("progress-bar").style.width = `${pct}%`;
-      document.getElementById("progress-text").innerText = `${sentCount} / ${total} (${pct}%) Completed`;
+      document.getElementById("progress-text").innerText = `${sentCount} / ${total} (${pct}%)`;
 
       // Update counts on filter buttons
-      document.getElementById("count-all").innerText = total;
-      document.getElementById("count-sent").innerText = sentCount;
-      document.getElementById("count-pending").innerText = pendingCount;
+      document.getElementById("c-all").innerText = total;
+      document.getElementById("c-sent").innerText = sentCount;
+      document.getElementById("c-pending").innerText = pendingCount;
 
-      // Filtered contacts
+      // Filter Logic
       let filtered = contactsData.filter(c => {
-        // Tab Filter
         if (activeFilter === 'sent' && c["Invitation Status"] !== 'Sent') return false;
         if (activeFilter === 'pending' && c["Invitation Status"] === 'Sent') return false;
         if (activeFilter === 'sajode' && c["Category / Note"] !== 'Sajode') return false;
@@ -588,69 +695,120 @@
         if (activeFilter === 'mahesh' && !(c["Sent From (Sender)"] || "").includes("9879881172")) return false;
         if (activeFilter === 'varsha' && !(c["Sent From (Sender)"] || "").includes("6351838451")) return false;
 
-        // Search Filter
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
           const name = (c["Name"] || "").toLowerCase();
-          const phone = (c["Phone 1"] || "") + " " + (c["Phone 2"] || "") + " " + (c["Recipient Number"] || "");
+          const phone = (c["Phone 1"] || "") + " " + (c["Recipient Number"] || "");
           const cat = (c["Category / Note"] || "").toLowerCase();
-          const sender = (c["Sent From (Sender)"] || "").toLowerCase();
-          if (!name.includes(q) && !phone.includes(q) && !cat.includes(q) && !sender.includes(q)) {
+          if (!name.includes(q) && !phone.includes(q) && !cat.includes(q)) {
             return false;
           }
         }
         return true;
       });
 
-      // Render Table
-      const tbody = document.getElementById("table-body");
+      // 1. Render Mobile Cards View
+      const mobileContainer = document.getElementById("mobile-cards-container");
       if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" class="empty-state">No matching guests found.</td></tr>`;
-        return;
+        mobileContainer.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">કોઈ મહેમાન મળ્યા નથી.</div>`;
+      } else {
+        mobileContainer.innerHTML = filtered.map(c => {
+          const isSent = c["Invitation Status"] === "Sent";
+          const cat = c["Category / Note"] || "Sajode";
+          const catBadge = cat === 'Sarvo' 
+            ? `<span class="badge b-sarvo">👨‍👩‍👧‍👦 સર્વો</span>` 
+            : `<span class="badge b-sajode">👥 સજોડે</span>`;
+          const statusBadge = isSent 
+            ? `<span class="badge b-sent">✅ મોકલાઈ ગયું</span>` 
+            : `<span class="badge b-pending">⏳ બાકી</span>`;
+          
+          let senderBadge = "";
+          if (c["Sent From (Sender)"]) {
+            if (c["Sent From (Sender)"].includes("9879881172")) {
+              senderBadge = `<span class="badge b-mahesh">મહેશભાઈ</span>`;
+            } else if (c["Sent From (Sender)"].includes("6351838451")) {
+              senderBadge = `<span class="badge b-varsha">વર્ષાબેન</span>`;
+            }
+          }
+
+          const phone = c["Phone 1"] || c["Recipient Number"] || "—";
+          const waCheck = c["વોટ્સએપ OK"] ? "✅" : "";
+          const callCheck = c["ફોન પર વાતચીત"] ? "✅" : "";
+
+          return `
+            <div class="guest-card">
+              <div class="gc-header">
+                <div class="gc-name">${c["Name"]}</div>
+                <div class="gc-sr">#${c["Sr. No."]}</div>
+              </div>
+              <div class="gc-meta">
+                ${catBadge}
+                ${statusBadge}
+                ${senderBadge}
+                <a href="tel:${phone}" class="gc-phone">📞 ${phone}</a>
+              </div>
+              <div class="gc-checks">
+                <div class="check-label">
+                  <span class="box-square">${waCheck}</span>
+                  વોટ્સએપ OK
+                </div>
+                <div class="check-label">
+                  <span class="box-square">${callCheck}</span>
+                  ફોન પર વાતચીત
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
       }
 
-      tbody.innerHTML = filtered.map(c => {
-        const isSent = c["Invitation Status"] === "Sent";
-        const cat = c["Category / Note"] || "Sajode";
-        const catBadge = cat === 'Sarvo' 
-          ? `<span class="badge badge-sarvo">👨‍👩‍👧‍👦 Sarvo</span>` 
-          : `<span class="badge badge-sajode">👥 Sajode</span>`;
-
-        const statusBadge = isSent 
-          ? `<span class="badge badge-sent">✅ Delivered</span>` 
-          : `<span class="badge badge-pending">⏳ Pending</span>`;
-
-        let senderBadge = `<span style="color:var(--text-muted)">—</span>`;
-        if (c["Sent From (Sender)"]) {
-          if (c["Sent From (Sender)"].includes("9879881172")) {
-            senderBadge = `<span class="badge badge-mahesh">Maheshbhai</span>`;
-          } else if (c["Sent From (Sender)"].includes("6351838451")) {
-            senderBadge = `<span class="badge badge-varsha">Varshaben</span>`;
-          } else {
-            senderBadge = `<span class="badge badge-mahesh">${c["Sent From (Sender)"]}</span>`;
+      // 2. Render Desktop / Print Table View
+      const tbody = document.getElementById("table-body");
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:30px; color:#64748b;">કોઈ મહેમાન મળ્યા નથી.</td></tr>`;
+      } else {
+        tbody.innerHTML = filtered.map(c => {
+          const isSent = c["Invitation Status"] === "Sent";
+          const cat = c["Category / Note"] || "Sajode";
+          const catBadge = cat === 'Sarvo' 
+            ? `<span class="badge b-sarvo">સર્વો</span>` 
+            : `<span class="badge b-sajode">સજોડે</span>`;
+          const statusBadge = isSent 
+            ? `<span class="badge b-sent">✅ મોકલેલ</span>` 
+            : `<span class="badge b-pending">⏳ બાકી</span>`;
+          
+          let senderBadge = "—";
+          if (c["Sent From (Sender)"]) {
+            if (c["Sent From (Sender)"].includes("9879881172")) {
+              senderBadge = `<span class="badge b-mahesh">મહેશભાઈ</span>`;
+            } else if (c["Sent From (Sender)"].includes("6351838451")) {
+              senderBadge = `<span class="badge b-varsha">વર્ષાબેન</span>`;
+            }
           }
-        }
 
-        const pdfName = c["PDF Sent"] ? c["PDF Sent"] : "—";
-        const time = c["Sent Timestamp"] ? c["Sent Timestamp"] : "—";
-        const phone = c["Phone 1"] || c["Recipient Number"] || "—";
+          const pdfName = c["PDF Sent"] ? c["PDF Sent"].replace(".pdf", "") : "—";
+          const phone = c["Phone 1"] || c["Recipient Number"] || "—";
+          const waCheck = c["વોટ્સએપ OK"] ? "✔" : "";
+          const callCheck = c["ફોન પર વાતચીત"] ? "✔" : "";
 
-        return `
-          <tr>
-            <td class="sr-col" data-label="Sr.">#${c["Sr. No."]}</td>
-            <td class="name-col" data-label="Guest">${c["Name"]}</td>
-            <td data-label="Category">${catBadge}</td>
-            <td class="phone-col" data-label="Phone">${phone}</td>
-            <td data-label="Status">${statusBadge}</td>
-            <td data-label="Sender">${senderBadge}</td>
-            <td data-label="PDF">${pdfName}</td>
-            <td class="time-col" data-label="Timestamp">${time}</td>
-          </tr>
-        `;
-      }).join('');
+          return `
+            <tr>
+              <td class="col-center"><b>#${c["Sr. No."]}</b></td>
+              <td><b>${c["Name"]}</b></td>
+              <td>${catBadge}</td>
+              <td style="font-family:monospace; font-weight:600;">${phone}</td>
+              <td>${statusBadge}</td>
+              <td>${senderBadge}</td>
+              <td style="font-size:0.75rem; color:#475569;">${pdfName}</td>
+              <td class="check-cell"><span class="print-box">${waCheck}</span></td>
+              <td class="check-cell"><span class="print-box">${callCheck}</span></td>
+            </tr>
+          `;
+        }).join('');
+      }
     }
 
-    // Filter Button Clicks
+    // Filter Buttons
     document.querySelectorAll(".filter-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -666,7 +824,7 @@
       render();
     });
 
-    // Initial Load & Auto-Refresh every 15s
+    // Initial Load & Refresh
     loadData();
     setInterval(loadData, 15000);
   </script>

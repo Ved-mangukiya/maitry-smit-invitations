@@ -147,14 +147,14 @@ def save_state(contacts):
     pending_count = total - sent_count
     
     # Title Block
-    ws.merge_cells("A1:K1")
+    ws.merge_cells("A1:M1")
     ws["A1"] = "MAITRY & SMIT WEDDING INVITATION AUTOMATION TRACKER"
     ws["A1"].font = Font(name="Calibri", size=15, bold=True, color="FFFFFF")
     ws["A1"].fill = PatternFill(start_color="1A365D", end_color="1A365D", fill_type="solid")
     ws["A1"].alignment = Alignment(horizontal="center", vertical="center")
     ws.row_dimensions[1].height = 40
 
-    ws.merge_cells("A2:K2")
+    ws.merge_cells("A2:M2")
     ws["A2"] = f"Total Contacts: {total}  |  Sent: {sent_count}  |  Pending: {pending_count}  |  Updated: {datetime.now().strftime('%d-%b-%Y %I:%M %p')}"
     ws["A2"].font = Font(name="Calibri", size=10, italic=True, color="DCE7F5")
     ws["A2"].fill = PatternFill(start_color="2B4C7E", end_color="2B4C7E", fill_type="solid")
@@ -172,6 +172,8 @@ def save_state(contacts):
         "Sent From (Sender)",
         "PDF Sent",
         "Sent Timestamp",
+        "વોટ્સએપ OK",
+        "ફોન પર વાતચીત",
         "Notes"
     ]
     ws.row_dimensions[3].height = 28
@@ -220,6 +222,8 @@ def save_state(contacts):
             r.get("Sent From (Sender)", ""),
             r.get("PDF Sent", ""),
             r.get("Sent Timestamp", ""),
+            r.get("વોટ્સએપ OK", ""),
+            r.get("ફોન પર વાતચીત", ""),
             r.get("Notes", "")
         ]
 
@@ -230,7 +234,7 @@ def save_state(contacts):
             cell.fill = fill
             cell.border = thin_border
             
-            if col_idx in [1, 3, 7, 10]:
+            if col_idx in [1, 3, 7, 10, 11, 12]:
                 cell.alignment = Alignment(horizontal="center", vertical="center")
             elif col_idx in [4, 5, 6, 8]:
                 cell.alignment = Alignment(horizontal="center", vertical="center")
@@ -245,7 +249,7 @@ def save_state(contacts):
                     cell.font = bold_red
 
     # Set column widths
-    widths = [10, 32, 16, 16, 16, 20, 18, 30, 26, 22, 25]
+    widths = [10, 32, 16, 16, 16, 20, 18, 28, 26, 20, 16, 18, 22]
     for idx, w in enumerate(widths, 1):
         col_letter = get_column_letter(idx)
         ws.column_dimensions[col_letter].width = w
