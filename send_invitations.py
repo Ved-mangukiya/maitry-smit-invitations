@@ -122,8 +122,22 @@ def save_state(contacts):
     # 1. Save JSON
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(contacts, f, indent=2, ensure_ascii=False)
+
+    # 2. Update index.html embedded data
+    html_file = os.path.join(BASE_DIR, "index.html")
+    if os.path.exists(html_file):
+        try:
+            with open(html_file, "r", encoding="utf-8") as f:
+                content = f.read()
+            pattern = r"let contactsData = \[.*?\];"
+            replacement = "let contactsData = " + json.dumps(contacts, ensure_ascii=False) + ";"
+            new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+            with open(html_file, "w", encoding="utf-8") as f:
+                f.write(new_content)
+        except Exception:
+            pass
     
-    # 2. Save Excel
+    # 3. Save Excel
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "Invitation Contacts"
