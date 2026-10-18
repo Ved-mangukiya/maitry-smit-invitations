@@ -306,7 +306,17 @@ def main():
     parser.add_argument("--start-sr", type=int, default=0, help="Start Sr. No. to send (e.g. 1)")
     parser.add_argument("--end-sr", type=int, default=0, help="End Sr. No. to send (e.g. 30)")
     parser.add_argument("--generate-pdf", action="store_true", help="Compile and generate A4 Portrait PDF with big fonts")
+    parser.add_argument("--sync-sheet", action="store_true", help="Sync/pull latest contacts from Google Sheet before processing")
     args = parser.parse_args()
+
+    # Handle Sync Sheet
+    if args.sync_sheet:
+        from sync_google_sheets import pull_from_google_sheet
+        print("\n--- Synchronizing from Google Sheet ---")
+        pull_from_google_sheet()
+        print("---------------------------------------\n")
+        if not args.send and not args.dry_run and not args.login and not args.check:
+            return
 
     # Handle Generate PDF
     if args.generate_pdf:

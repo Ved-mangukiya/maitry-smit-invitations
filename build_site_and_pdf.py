@@ -258,6 +258,17 @@ def build_site_and_pdf(contacts=None):
       transform: translateY(-1px);
     }}
 
+    .btn-sheet {{
+      background: #0f766e;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+    }}
+
+    .btn-sheet:hover {{
+      background: #115e59;
+      transform: translateY(-1px);
+    }}
+
     .btn-print {{
       background: #0f172a;
       color: #ffffff;
@@ -779,6 +790,11 @@ def build_site_and_pdf(contacts=None):
       <!-- 1-Click Direct Download of Pre-rendered A4 Portrait PDF -->
       <a href="Maitry_and_Smit_Invitations_A4_Portrait.pdf" download="Maitry_and_Smit_Invitations_A4_Portrait.pdf" class="btn-action btn-pdf">
         📥 A4 Portrait PDF ડાઉનલોડ
+      </a>
+
+      <!-- Direct Link to Live Google Sheet -->
+      <a href="https://docs.google.com/spreadsheets/d/1Swo30hHUcKIUFQycJjUnn6ocMlWz5P2HiyQvM2UBnp8/edit?usp=sharing" target="_blank" class="btn-action btn-sheet">
+        📊 Google Sheet ખોલો
       </a>
 
       <!-- Instant Browser Print Dialogue configured in A4 Portrait -->
